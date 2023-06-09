@@ -15,6 +15,9 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
+
+
+
 /*--------- header START ------------*/
 
 .navbar {
@@ -34,6 +37,48 @@ body {
 .navbarLinks li {
     padding: 5px;
 }
+
+/* NAVBAR BUTTON START */
+
+.navbar-button {
+    border: none;
+    padding: 1em 1.5em;
+    color: #000;
+    position: relative;
+    display: inline-block;
+  }
+
+.navbar-button i {
+    padding-right: 10px;
+}
+  
+.navbar-button::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0;
+    background-color: #ffc506;
+    transition: .5s ease;
+}
+  
+.navbar-button:hover::before {
+    width: 100%;
+}
+
+.navbar-active::before {
+    transition: 0s;
+}
+
+.navbar-active:hover::before{
+    width: 0;
+}
+
+.navbar-active {
+    border-bottom: 2px solid #ffc506;
+}
+/* NAVBAR BUTTON END */
 
 .btn {
     color: #560bad;
@@ -207,6 +252,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
+    margin-bottom: 80px;
 }
 
 .articleItem {
@@ -235,7 +281,39 @@ body {
 
 
 /* inspiration start */
+/* CARDS START */
 
+.inspiration {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 10px;
+}
+
+.inspirationNote {
+    padding: 20px;
+    border: 5px solid #dab777;
+    border-radius: 15px;
+    /* background-color: rgb(247, 247, 247); */
+    background-color: #ffc75f;
+    transition: 0.3s;
+}
+
+.inspirationNote:hover {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transform: scale(1.01);
+}
+
+.inspirationNote p { 
+    margin: 20px 0;
+}
+
+.inspirationNote-bottom {
+    display: flex;    
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* CARDS END */
 /* inspiration end */
 
 /*---------  main END ---------*/

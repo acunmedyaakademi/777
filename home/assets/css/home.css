@@ -3,17 +3,24 @@
 *{
     font-family: 'Montserrat', sans-serif;
 }
-body {
-    
-}
 
-/* header START */
+/*--------- header START ------------*/
 
 .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 20px;
+}
+
+.navbarLinks {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.navbarLinks li {
+    padding: 5px;
 }
 
 .btn {
@@ -57,4 +64,100 @@ body {
 .btn:active:before {
     background: #3a0ca3;
 }
-/* header END */
+/*--------- header END ---------*/
+
+
+/*--------- slider START ----------*/
+/* slideshow tasiyici */
+    .slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+}
+
+/* varsayilan olarak gorselleri gizliyoruz */
+.mySlides {
+    display: none;
+}
+
+/* sonraki ve onceki butonları */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+/* sonraki butonunun pozisyonu */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+/* uzerine gelince hafif bir efekt verelim */
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+/* gorsel basligi */
+.text {
+    color: #f2f2f2;
+    font-size: 24px;
+    padding: 8px 100px;
+    position: absolute;
+    bottom: 10%;
+    width: 100%;
+    text-align: center;
+}
+
+/* gorsel numaralari */
+.numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+
+/* nokta navigasyonu */
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+    background-color: #717171;
+}
+
+/* gecis animasyonu */
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+}
+
+@keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+}
+/*---------  slider END ---------*/

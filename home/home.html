@@ -16,15 +16,14 @@
             <a href="#">777</a>
 
             <ul class="navbarLinks">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Profile</a></li>
-                <li><a href="#">Account</a></li>
-                <li><a href="#">FAQ</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Log out</a></li>
+                <li><a href="#" class="navbar-button"><i class="fa-solid fa-house"></i>Home</a></li>
+                <li><a href="#" class="navbar-button"><i class="fa-solid fa-user"></i>Profile</a></li>
+                <li><a href="#" class="navbar-button acctive">Account</a></li>
+                <li><a href="#" class="navbar-button">FAQ</a></li>
+                <li><a href="#" class="navbar-button">Blog</a></li>
+                <li><a href="#" class="navbar-button">Log out</a></li>
             </ul>
 
-            
             <a href="#" class="btn">
                 <i class="fa-solid fa-feather"></i>
                 Let's Write!
@@ -68,6 +67,29 @@
                 <span class="dot" onclick="currentSlide(2)"></span> 
                 <span class="dot" onclick="currentSlide(3)"></span> 
             </div>
+
+            <ul class="cards">
+                <li class="card">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum totam magnam ipsam itaque provident sapiente, quae mollitia dolore tenetur repellat similique adipisci ratione beatae incidunt, vel aut ad? Nemo, quam.</p>
+                    <div class="card-bottom">
+                        <h5>Name</h5>
+                        <div>
+                            <h5>1</h5>
+                            <i class="fa-regular fa-heart"></i>
+                        </div>
+                    </div>
+                </li>
+                <li class="card">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum totam magnam ipsam itaque provident sapiente, quae mollitia dolore tenetur repellat similique adipisci ratione beatae incidunt, vel aut ad? Nemo, quam.</p>
+                    <div class="card-bottom">
+                        <a href=""><h5>Name</h5></a>
+                        <div>
+                            <h5>1</h5>
+                            <a href=""><i class="fa-regular fa-heart"></i></a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
             
 
         </div>
@@ -101,6 +123,17 @@
             slides[slideIndex-1].style.display = "block"; 
             dots[slideIndex-1].className += " active";
         }
+
+        let ekle = document.querySelectorAll('.navbar-button');
+
+        ekle.forEach(function(button) {
+            button.addEventListener('click', function() {
+                ekle.forEach(function(btn) {
+                btn.classList.remove('navbar-active');
+                });
+            button.classList.add('navbar-active');
+            });
+        });
     </script>
 </body>
 </html>

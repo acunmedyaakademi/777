@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="assets/css/takvim.css">
+    <title>Takvim</title>
+</head>
+<body>
+    <!-- -------HEADER START------ -->
+    <header>
+        <div class="navbar">
+            
+            <a href="#">777</a>
+
+            <ul class="navbarLinks">
+                <li><a href="#" class="navbar-button"><i class="fa-solid fa-house"></i>Home</a></li>
+                <li><a href="#" class="navbar-button"><i class="fa-solid fa-user"></i>Profile</a></li>
+                <li><a href="#" class="navbar-button acctive">Account</a></li>
+                <li><a href="#" class="navbar-button">FAQ</a></li>
+                <li><a href="#" class="navbar-button">Blog</a></li>
+                <li><a href="#" class="navbar-button">Log out</a></li>
+            </ul>
+
+            <a href="#" class="btn">
+                <i class="fa-solid fa-feather"></i>
+                Let's Write!
+            </a>
+        </div>
+    </header>
+    <!-- -------HEADER END------ -->
+
+
+    <!-- ------main START------ -->
+    <div class="main">
+
+        <!-- container start -->
+        <div class="container">
+
+            <!-- calender START -->
+            <div class="calendar">
+                <!-- calendarTop start -->
+                <div class="calendarTop">
+
+                    <ul class="days">
+                        <li class="day">M</li>
+                        <li class="day">T</li>
+                        <li class="day">W</li>
+                        <li class="day">Th</li>
+                        <li class="day">F</li>
+                        <li class="day">Sa</li>
+                        <li class="day">S</li>
+                    </ul>
+
+                    <ul class="dates">
+                      
+                    </ul>
+
+                </div>
+                <!-- calendarTop end -->
+
+                <!-- calendarBottom start -->
+                <div class="calendarBottom">
+                    <button class="prevBtn" onclick="prevMonth()">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+
+                    <span class="currentMonthYear"></span>
+
+                    <button class="nextBtn" onclick="prevMonth()">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+                <!-- calendarBottom end -->
+
+            </div>
+            <!-- calender END -->
+
+
+        </div>
+        <!-- container end -->
+    </div>
+    <!-- ------main END------ -->
+
+    <script src="assets/js/takvim.js"></script>
+
+</body>
+</html>

@@ -160,7 +160,31 @@ namespace _777.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Text",
+                name: "InspireMessages",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    MyProperty = table.Column<int>(type: "int", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_InspireMessages", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_InspireMessages_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Texts",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -176,9 +200,9 @@ namespace _777.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Text", x => x.Id);
+                    table.PrimaryKey("PK_Texts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Text_AspNetUsers_UserId",
+                        name: "FK_Texts_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -225,8 +249,13 @@ namespace _777.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Text_UserId",
-                table: "Text",
+                name: "IX_InspireMessages_UserId",
+                table: "InspireMessages",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Texts_UserId",
+                table: "Texts",
                 column: "UserId");
         }
 
@@ -248,7 +277,10 @@ namespace _777.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Text");
+                name: "InspireMessages");
+
+            migrationBuilder.DropTable(
+                name: "Texts");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

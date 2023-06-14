@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.WebUtilities;
 using System.Text.Encodings.Web;
 using System.Text;
 using _777.Data.Entities;
+using _777.Core;
 
 namespace _777.Controllers
 {
@@ -84,10 +85,9 @@ namespace _777.Controllers
             if (ModelState.IsValid)
             { //todo: smtp 
                 var user = await _userManager.FindByEmailAsync(Email);
-                if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
-                {
-                    return RedirectToPage("Identity/Account/ForgotPasswordConfirmation");
-                }
+                if (user == null || !await _userManager.IsEmailConfirmedAsync(user))
+                  return RedirectToPage("Identity/Account/ForgotPasswordConfirmation");
+               
                 var code = await _userManager.GeneratePasswordResetTokenAsync(user);
                 code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                 var callbackUrl = Url.Page(
@@ -95,7 +95,7 @@ namespace _777.Controllers
                         pageHandler: null,
                         values: new { area = "Identity", code },
                         protocol: Request.Scheme);
-                //MailKitService.SendMailPassword(Email, HtmlEncoder.Default.Encode(callbackUrl));
+                if(Helper.SendMail(Email, HtmlEncoder.Default.Encode(callbackUrl)))
 
                 return RedirectToAction("Index", "home");
             }

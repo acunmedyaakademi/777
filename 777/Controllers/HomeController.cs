@@ -1,4 +1,5 @@
-﻿using _777.Models;
+﻿using _777.Core;
+using _777.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -17,10 +18,10 @@ namespace _777.Controllers
 
         public IActionResult Index()
         {
-            string apiKey = _configuration.GetValue<string>("ReCapthca:SecretKey");
-            return Content(apiKey);
+            // string apiKey = _configuration.GetValue<string>("ReCapthca:SecretKey");
+            //Helper.SendMail("yunusemrekosar2@gmail.com", "oldu");
+            return View(); 
         }
-
         public IActionResult Privacy()
         {
             return View();

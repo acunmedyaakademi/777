@@ -1,11 +1,4 @@
-<<<<<<< HEAD
-﻿namespace _777.Controllers
-{
-    public class AccountController
-    {
-    }
-}
-=======
+
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
@@ -126,4 +119,3 @@ namespace _777.Controllers
     }
 }
 
->>>>>>> master

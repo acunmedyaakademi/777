@@ -70,10 +70,10 @@ function prevMonth() {
     createCalendar(date);
 }
 
-// Nest month
+// Next month
 function nextMonth() {
     date = new Date(date.getFullYear(), date.getMonth() + 1, date.getDate());
-
+    
     createCalendar(date);
 }
     

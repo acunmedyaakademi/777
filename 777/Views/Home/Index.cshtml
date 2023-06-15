@@ -1,4 +1,5 @@
-﻿@model UserIndexVM
+﻿@using _777.Data.Entities;
+@model List<InspireMessage>
         <!-- -------hero START------- -->
     <div class="hero">
         <!-- Slideshow taşıyıcı -->
@@ -47,21 +48,21 @@
     </div>
     <!-- -------hero END------- -->
     <!-- -------main START------- -->
-    <div class="main">
 
 
 
         <h3>İlham Yazıları</h3>
 
         <ul class="inspiration">
-        @if (Model.ınspireMessages != null)
+
+        @if (Model != null)
         {
-            @foreach (var item in Model.ınspireMessages)
+            @foreach (var item in Model)
             {
                 <li class="inspirationNote">
                     <p>@item.Message</p>
                     <div class="inspirationNote-bottom">
-                        <a href=""><h5>@item.user.UserName</h5></a>
+                        <a href=""><h5>@item.user.FullName</h5></a>
                         @*<a href="">1 <i class="fa-regular fa-heart"></i></a>*@
                     </div>
                 </li>

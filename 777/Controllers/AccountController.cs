@@ -5,6 +5,8 @@ using System.Text.Encodings.Web;
 using System.Text;
 using _777.Data.Entities;
 using _777.Core;
+using Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal;
+using _777.Models;
 
 namespace _777.Controllers
 {
@@ -38,7 +40,7 @@ namespace _777.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Register(Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal.RegisterModel.InputModel model)
+        public async Task<IActionResult> Register(MyRegisterModel model)
         {
             if (ModelState.IsValid)
             {
@@ -46,7 +48,7 @@ namespace _777.Controllers
                 {
                     UserName = model.Email,
                     Email = model.Email,
-                    EmailConfirmed = false
+                    FullName = model.FullName
 
                 };
                 var result = await _userManager.CreateAsync(user, model.Password);

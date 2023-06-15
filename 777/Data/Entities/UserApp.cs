@@ -8,6 +8,6 @@ namespace _777.Data.Entities
         public DateTime CreatedOn { get ; set ; }
         public DateTime UpdatedOn { get ; set ; }
         public bool IsActive { get ; set ; }
-       public  List<Text> Texts { get ; set ; }
+       public  List<TextApp> Texts { get ; set ; }
     }
 }

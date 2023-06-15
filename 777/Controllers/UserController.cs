@@ -22,7 +22,7 @@ namespace _777.Controllers
         {
             UserIndexVM VM = new UserIndexVM();
             int b = Convert.ToInt16(_userManager.GetUserId(User));
-            List<Text> texts = _context.Texts.Include(a => a.User).Where(a => a.UserId == b).ToList();
+            List<TextApp> texts = _context.TextApps.Include(a => a.User).Where(a => a.UserId == b).ToList();
             List<InspireMessage> ım = _context.InspireMessages.Include(a => a.user).ToList();
             VM.ınspireMessages = ım;
             VM.Texts = texts;
@@ -34,7 +34,7 @@ namespace _777.Controllers
         {
             ProfileVM VM = new ProfileVM();
             var user = await _userManager.GetUserAsync(User);
-            var TextDetails = _context.Texts.ToList();
+            var TextDetails = _context.TextApps.ToList();
             List<TextDetail> detaylar = new();
 
             foreach (var item in TextDetails)
@@ -53,7 +53,7 @@ namespace _777.Controllers
         public IActionResult Write()
         {
             int b = Convert.ToInt16(_userManager.GetUserId(User));
-            List<Text> texts = _context.Texts.Include(a => a.User).ToList();
+            List<TextApp> texts = _context.TextApps.Include(a => a.User).ToList();
             return View(texts);
             //ok
         }
@@ -63,26 +63,27 @@ namespace _777.Controllers
         {
             Helper.SentimentAnalysis(Text);
             int userId = Convert.ToInt16(_userManager.GetUserId(User));
-            Text text = new();
+            TextApp text = new();
             text.Content = Text;
             text.UserId = userId;
             text.Title = Helper.DateToString(DateTime.Now);
             text.SentimentScore = Helper.SentimentAnalysis(Text);
             
-            _context.Texts.Add(text);
+            _context.TextApps.Add(text);
             _context.SaveChanges();
             return View();
         }
         public IActionResult TextDetail(int textId)
         {
-            var a = _context.Texts.FirstOrDefault(a => a.Id == textId);
+            var a = _context.TextApps.First(a => a.Id == textId);
+
             return View(a);
         }
 
         [HttpPost]
-        public IActionResult TextDetail(Text text)
+        public IActionResult TextDetail(TextApp text)
         {
-            _context.Texts.Update(text);
+            _context.TextApps.Update(text);
             _context.SaveChanges();
             return View();
         }

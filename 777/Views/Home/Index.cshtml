@@ -1,8 +1,155 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model UserIndexVM
+        <!-- -------hero START------- -->
+    <div class="hero">
+        <!-- Slideshow taşıyıcı -->
+        <div class="slideshow-container">
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+            <!-- Sayıya, başlığa sahip full geniş görseller -->
+            <div class="mySlides fade">
+                <div class="numbertext">1 / 3</div>
+                <img src="/images/pexels-photo-733857.jpg" style="width:100%">
+                <h2 class="text" style="color:black">777 sayısı, spiritüel bir rehber olarak görülür. Bu sayı, hayatınızda karşılaştığınız zorluklarda sizi yönlendirebilir. Size iyi düşünceler ve enerjiler getirir ve olumlu bir gelecek için size umut verir.
+                    777 sayısı, ilerleme ve başarı anlamı taşır. Bu sayının sıklıkla görülmesi, hayatınızda başarılar elde etmeniz için size ilham verir. İlerlemenizi hızlandırır ve hedeflerinize ulaşmanızı kolaylaştırır.
+                </h2>
+            </div>
+
+            <div class="mySlides fade">
+                <div class="numbertext">2 / 3</div>
+                <img src="/images/777-anlami-hayatinizin-yo-634.jpg" style="width:100%">
+                <h2 class="text" style="color:black">777 sayısı, ruhsal uyanış anlamı taşır. Bu sayının sıklıkla görülmesi, kendinizi ve yaşamınızı daha derin bir seviyede anlama ve anlamlandırma şansı verir.
+                    777 sayısı, duyarlılık ve hassasiyet anlamı taşır. Bu sayı, insanlarla daha bağlı kurmanıza ve duygularınızı daha iyi anlamanıza yardımcı olur. Size empati ve şefkat duygularını güçlendirir.
+                </h2>
+            </div>
+
+
+
+            <div class="mySlides fade">
+                <div class="numbertext">3 / 3</div>
+                <img src="/images/pexels-photo-261579.jpg" style="width:100%">
+                <h2 class="text"style="color:antiquewhite">777 sayısı, doğru yola yönlendirme anlamı taşır. Bu sayı, size hayatınızda doğru yolu bulmanız için rehberlik eder. Size yardımcı olur ve karar vermenize yardımcı olur
+                    777 sayısını sıklıkla görmeniz tesadüf değildir. Bu sayı, hayatınızda size bir mesaj vermek için sıklıkla karşınıza çıkar. Bu mesajları fark etmek ve anlamak, hayatınızdaki değişimleri ve fırsatları daha iyi yakalamak için önemlidir. 777 sayısını sıklıkla görmeniz, hayatınızda yeni bir dönemin başlangıcına işaret edebilir.
+                 </h2>
+            </div>
+
+            <!-- Sonraki önceki butonlarımız -->
+            <a class="prev" onclick="plusSlides(-1)">❮</a>
+            <a class="next" onclick="plusSlides(1)">❯</a>
+        </div>
+        <br>
+
+        <!-- Nokta navigasyonlarımız -->
+        <div class="dots">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+
+    </div>
+    <!-- -------hero END------- -->
+    <!-- -------main START------- -->
+    <div class="main">
+
+
+
+        <h3>İlham Yazıları</h3>
+
+        <ul class="inspiration">
+        @if (Model.ınspireMessages != null)
+        {
+            @foreach (var item in Model.ınspireMessages)
+            {
+                <li class="inspirationNote">
+                    <p>@item.Message</p>
+                    <div class="inspirationNote-bottom">
+                        <a href=""><h5>@item.user.UserName</h5></a>
+                        @*<a href="">1 <i class="fa-regular fa-heart"></i></a>*@
+                    </div>
+                </li>
+            }
+        }
+            <li class="inspirationNote">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum totam magnam ipsam itaque provident sapiente, quae mollitia dolore tenetur repellat similique adipisci ratione beatae incidunt, vel aut ad? Nemo, quam.</p>
+                <div class="inspirationNote-bottom">
+                    <a href=""><h5>Name</h5></a>
+                    <a href="">1 <i class="fa-regular fa-heart"></i></a>
+                </div>
+            </li>
+
+            <li class="inspirationNote">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum totam magnam ipsam itaque provident sapiente, quae mollitia dolore tenetur repellat similique adipisci ratione beatae incidunt, vel aut ad? Nemo, quam.</p>
+                <div class="inspirationNote-bottom">
+                    <a href=""><h5>Name</h5></a>
+                    <a href="">1 <i class="fa-regular fa-heart"></i></a>
+                </div>
+            </li>
+
+            <li class="inspirationNote">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum totam magnam ipsam itaque provident sapiente, quae mollitia dolore tenetur repellat similique adipisci ratione beatae incidunt, vel aut ad? Nemo, quam.</p>
+                <div class="inspirationNote-bottom">
+                    <a href=""><h5>Name</h5></a>
+                    <a href="">1 <i class="fa-regular fa-heart"></i></a>
+                </div>
+            </li>
+
+               <li class="inspirationNote">
+             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum totam magnam ipsam itaque provident sapiente, quae mollitia dolore tenetur repellat similique adipisci ratione beatae incidunt, vel aut ad? Nemo, quam.</p>
+                <div class="inspirationNote-bottom">
+                    <a href=""><h5>Name</h5></a>
+                    <a href="">1 <i class="fa-regular fa-heart"></i></a>
+                </div>
+            </li>
+
+               <li class="inspirationNote">
+             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum totam magnam ipsam itaque provident sapiente, quae mollitia dolore tenetur repellat similique adipisci ratione beatae incidunt, vel aut ad? Nemo, quam.</p>
+                <div class="inspirationNote-bottom">
+                    <a href=""><h5>Name</h5></a>
+                    <a href="">1 <i class="fa-regular fa-heart"></i></a>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+    <!-- -------main END------- -->
+
+
+    <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.querySelectorAll(".mySlides");
+            let dots = document.querySelectorAll(".dot");
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+        }
+
+        let ekle = document.querySelectorAll('.navbar-button');
+
+        ekle.forEach(function (button) {
+            button.addEventListener('click', function () {
+                ekle.forEach(function (btn) {
+                    btn.classList.remove('navbar-active');
+                });
+                button.classList.add('navbar-active');
+            });
+        });
+
+
+    </script>

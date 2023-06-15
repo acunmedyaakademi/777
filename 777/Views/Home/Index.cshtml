@@ -1,5 +1,4 @@
-﻿@model UserIndexVM
-        <!-- -------hero START------- -->
+﻿
     <div class="hero">
         <!-- Slideshow taşıyıcı -->
         <div class="slideshow-container">
@@ -54,7 +53,7 @@
         <h3>İlham Yazıları</h3>
 
         <ul class="inspiration">
-        @if (Model.ınspireMessages != null)
+      @*  @if (Model.ınspireMessages != null)
         {
             @foreach (var item in Model.ınspireMessages)
             {
@@ -62,11 +61,12 @@
                     <p>@item.Message</p>
                     <div class="inspirationNote-bottom">
                         <a href=""><h5>@item.user.UserName</h5></a>
-                        @*<a href="">1 <i class="fa-regular fa-heart"></i></a>*@
+                        @*<a href="">1 <i class="fa-regular fa-heart"></i></a>*
                     </div>
                 </li>
             }
         }
+      *@
             <li class="inspirationNote">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum totam magnam ipsam itaque provident sapiente, quae mollitia dolore tenetur repellat similique adipisci ratione beatae incidunt, vel aut ad? Nemo, quam.</p>
                 <div class="inspirationNote-bottom">

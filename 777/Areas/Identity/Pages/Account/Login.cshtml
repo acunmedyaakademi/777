@@ -3,7 +3,7 @@
 
 @{
     Layout = null;
-    ViewData["Title"] = "Log in";
+    ViewData["Title"] = "Login";
 }
 
 <!DOCTYPE html>
@@ -41,13 +41,13 @@
                 </div>
 
                 <div class="forget">
-                    <label for=""><input name="RememberMe" type="checkbox">Remember Me  <a href="Identity/Account/ForgotPassword">Forget Password</a></label>
+                    <label for=""><input value="true" name="RememberMe" type="checkbox">Remember Me  <a href="/Identity/Account/ForgotPassword">Forget Password</a></label>
                 </div>
 
                 <button type="submit">Log in</button>
 
                 <div class="register">
-                    <p>Don't have a account <a href="Identity/Account/Register">Register</a></p>
+                    <p>Don't have a account <a href="/Identity/Account/Register">Register</a></p>
                 </div>
 
             </form>

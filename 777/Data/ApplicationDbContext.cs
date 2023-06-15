@@ -1,4 +1,5 @@
 ﻿using _777.Data.Entities;
+using _777.Data.Entities.Common;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Formats.Asn1;
@@ -15,5 +16,27 @@ namespace _777.Data
         public DbSet<RoleApp> Roles { get; set; }
         public DbSet<Text> Texts { get; set; }
         public DbSet<InspireMessage> InspireMessages { get; set; }
+        public override int SaveChanges()
+        {
+            var datas = ChangeTracker.Entries<BaseClass>(); 
+
+            foreach (var data in datas)
+            {
+                switch (data.State)
+                {
+                    case EntityState.Modified:
+                        data.Entity.UpdatedOn = DateTime.Now;
+                        break;
+                    case EntityState.Added:
+                        data.Entity.CreatedOn = DateTime.Now;
+                        data.Entity.UpdatedOn = DateTime.Now;
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+            return base.SaveChanges();
+        }
     }
 }

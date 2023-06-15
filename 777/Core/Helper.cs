@@ -2,6 +2,8 @@
 using MailKit.Security;
 using MimeKit;
 using RestSharp;
+using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace _777.Core;
 
@@ -11,6 +13,13 @@ public static class Helper
     {
         public bool success { get; set; }
         public double score { get; set; }
+    }
+    public static string DateToString(DateTime date)
+    {
+        int Month = date.Month;
+        int Day = date.Day;
+        string MonthName = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(Month);
+        return $"{Day} {MonthName}";
     }
 
     public static bool ValidateRecaptcha(string token)
@@ -39,23 +48,60 @@ public static class Helper
         return true;
     }
 
-    public static double SentimentAnalysis (string a)
+    public static double SentimentAnalysis (string Text)
     {
-        string text = $@"{a}";
+        string text = $@"{Text}";
 
+        string editedText = Regex.Replace(text, @"[^\w\s]", " ");
+
+        string[] splitedText = editedText.Split(' ');
         string[] positives = File.ReadAllLines("positive-words.txt");
         string[] negatives = File.ReadAllLines("negative-words.txt");
-
         double positive = 0;
         double negative = 0;
 
-        foreach (string s in text.Split(' '))
+        for (int i = 0; i < splitedText.Length - 1; i++)
         {
-            if (positives.Any(e => e.Equals(s.ToLower())))
+
+            if (string.IsNullOrEmpty(splitedText[i]))
+                i++;
+
+            string s = splitedText[i];
+            string? a = "";
+
+
+            switch (i)
+            {
+                case 0:
+                    break;
+                default:
+                    a = splitedText[i - 1];
+                    break;
+            }
+
+
+            if ((s.EndsWith("mak")) || (s.EndsWith("mak")))
             {
                 positive = positive + 1;
             }
 
+            else if (positives.Any(e => e.Equals(s.ToLower())))
+            {
+                positive = positive + 1;
+            }
+
+            else if ((negatives.Any(e => e.Equals(s.ToLower())) && (a != "" ? a.EndsWith("an") : true || a != "" ? a.EndsWith("en") : true)))
+            {
+                negative = negative + 1;
+            }
+
+            else if (s.ToLower().Contains("ebil") || s.ToLower().Contains("abil") || s.ToLower().Contains("acağ") || s.ToLower().Contains("eceğ"))
+            {
+                if (s.ToLower().EndsWith("m"))
+                {
+                    positive = positive + 1;
+                }
+            }
             else if (negatives.Any(e => e.Equals(s.ToLower())))
             {
                 negative = negative + 1;
@@ -63,7 +109,6 @@ public static class Helper
         }
 
         double score = (positive - negative) / (positive + negative);
-
         return score;
     }
 

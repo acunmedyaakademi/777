@@ -21,6 +21,8 @@ const MONTHS = [
     'Aralık'
 ];
 
+
+
 function createCalendar(date) {
     const prev = getLastDate(date.getFullYear(), date.getMonth(), true);
     const curr = getLastDate(date.getFullYear(), date.getMonth() + 1);
@@ -29,6 +31,7 @@ function createCalendar(date) {
     // Firstly, clear the date list
     dateList.innerHTML = "";
 
+    // let malik = [];
 
     // Fill previous days on the calendar
     for(let i = prev.date - prev.days + 1; i <= prev.date; i++){
@@ -39,6 +42,7 @@ function createCalendar(date) {
 
     // Fill current days on the calendar
     for(let i = 1; i <= curr; i++) {
+        // malik.push(i);
         if(date.getDate() === i) {
             dateList.innerHTML += `
                 <li class="date current today">${i}</li>
@@ -56,11 +60,34 @@ function createCalendar(date) {
             <li class="date">${i}</li>
         `;
     }
-
+    
     // Update current month & year
     currentMonthYear.innerText = `${
         MONTHS[date.getMonth()]
     }, ${date.getFullYear()}`;
+
+    // const liElements = dateList.querySelectorAll("li");
+
+    // liElements.forEach((li) => {
+    //     if (li.classList.contains("complated")) {
+    //         li.innerText = "✔";    
+    //     }
+    // });
+
+    // let previousText = "";
+
+    // liElements.forEach((li) => {
+    //     if (li.classList.contains("complated")) {
+    //       li.addEventListener("mouseover", () => {
+    //         previousText = li.textContent;
+    //         li.textContent = "✔";
+    //       });
+      
+    //       li.addEventListener("mouseout", () => {
+    //         li.textContent = previousText;
+    //       });
+    //     }
+    //   });
 };
 
 // Previous month
@@ -90,5 +117,11 @@ function getLastDate(year, month, withDay = false) {
     return new Date(year, month, 0).getDate();
 };
 
+function buttonDeneme() {
+    console.log("tıklandı");
+}
+
 // Event Listeners
 document.addEventListener("DOMContentLoaded", () => createCalendar(date));
+dateList.addEventListener("click", buttonDeneme);
+

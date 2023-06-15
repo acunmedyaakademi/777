@@ -1,0 +1,62 @@
+﻿@using _777.Data.Entities;
+  @model Text
+      <!-- container start -->
+<div class="container">
+
+   <p>Bu metnin olumluluk skoru: @Model.SentimentScore.ToString() </p>
+
+    <!-- calender START -->
+    <div class="calendar">
+        <!-- calendarTop start -->
+        <div class="calendarTop">
+
+            <ul class="days">
+                <li class="day">M</li>
+                <li class="day">T</li>
+                <li class="day">W</li>
+                <li class="day">Th</li>
+                <li class="day">F</li>
+                <li class="day">Sa</li>
+                <li class="day">S</li>
+            </ul>
+
+            <ul class="dates">
+            </ul>
+
+        </div>
+        <!-- calendarTop end -->
+        <!-- calendarBottom start -->
+        <div class="calendarBottom">
+            <button class="prevBtn" onclick="prevMonth()">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+
+            <span class="currentMonthYear"></span>
+
+            <button class="nextBtn" onclick="nextMonth()">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+        <!-- calendarBottom end -->
+
+    </div>
+    <!-- calender END -->
+</div>
+<!-- container end -->
+<!-- container start -->
+<div class="container">
+
+    <!-- writingArea START -->
+    <div class="writingArea">
+        <fieldset>
+
+            <legend id="sayı">0</legend>
+
+            <textarea name="text" readonly id="text" oninput="countWords()">@Model.Content</textarea>
+
+        </fieldset>
+    </div>
+    <!-- writingArea END -->
+</div>
+<!-- container end -->
+<!-- ------main END------ -->

@@ -28,15 +28,19 @@
                 @if (SignInManager.IsSignedIn(User))
                 {
                     <li><a href="#" class="navbar-button"><i class="fa-solid fa-house"></i>Home</a></li>
-                    <li><a href="#" class="navbar-button"><i class="fa-solid fa-user"></i>Profile</a></li>
+                    <li><a href="/account/profile/" class="navbar-button"><i class="fa-solid fa-user"></i>Profile</a></li>
                     <li><a href="#" class="navbar-button acctive">Account</a></li>
                     <li><a href="#" class="navbar-button">FAQ</a></li>
                     <li><a href="#" class="navbar-button">Blog</a></li>
-                    <li><a href="#" class="navbar-button">Log out</a></li>
+                    <li>
+                        <form class="navbar-button" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                            <button type="submit">Logout</button>
+                        </form>
+                    </li>
                 }
                 else
                 {
-                    <li><a href="#" class="navbar-button"><i class="fa-solid fa-house"></i>Home</a></li>
+                    <li><a href="/" class="navbar-button"><i class="fa-solid fa-house"></i>Home</a></li>
                     <li><a href="#" class="navbar-button">FAQ</a></li>
                     <li><a href="#" class="navbar-button">Blog</a></li>
                     <li><a href="/Identity/Account/Login" class="navbar-button">Login</a></li>

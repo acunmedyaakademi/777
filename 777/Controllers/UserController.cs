@@ -75,7 +75,8 @@ namespace _777.Controllers
         }
         public IActionResult TextDetail(int textId)
         {
-            return View(_context.Texts.FirstOrDefault(a => a.Id == textId));
+            var a = _context.Texts.FirstOrDefault(a => a.Id == textId);
+            return View(a);
         }
 
         [HttpPost]

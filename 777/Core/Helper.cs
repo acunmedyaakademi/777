@@ -22,6 +22,15 @@ public static class Helper
         return $"{Day} {MonthName}";
     }
 
+    public static int CountText(string text)
+    {
+        //int Month = date.Month;
+        //int Day = date.Day;
+        //string MonthName = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(Month);
+        //return $"{Day} {MonthName}";
+        return 1;
+    }
+
     public static bool ValidateRecaptcha(string token)
     {
         var client = new RestClient(new RestClientOptions("https://www.google.com/recaptcha/"));

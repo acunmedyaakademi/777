@@ -2,7 +2,7 @@
 
 namespace _777.Data.Entities
 {
-    public class Text : BaseClass
+    public class TextApp : BaseClass
     {
         public string Title { get; set; }
         public int UserId  { get; set; }

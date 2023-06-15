@@ -14,7 +14,7 @@ namespace _777.Data
         }
         public DbSet<UserApp> Users { get; set; }
         public DbSet<RoleApp> Roles { get; set; }
-        public DbSet<Text> Texts { get; set; }
+        public DbSet<TextApp> TextApps { get; set; }
         public DbSet<InspireMessage> InspireMessages { get; set; }
         public override int SaveChanges()
         {

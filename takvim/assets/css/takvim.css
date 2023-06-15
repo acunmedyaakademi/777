@@ -227,19 +227,22 @@ body {
     height: 600px;
 }
 
-fieldset {
+.writingArea fieldset {
     height: 600px;
     padding: 10px;
+    position: relative;
 }
 
-legend {
+.writingArea legend {
     background-color: #000;
     color: #fff;
     padding: 3px 6px;
-    margin-left: 20px;
+    position: absolute;
+    bottom: -15px;
+    right: 15px;
 }
 
-textarea {
+.writingArea textarea {
     resize: none;
     border: none;
     outline: none;

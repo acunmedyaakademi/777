@@ -1,50 +1,74 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using _777.Data.Entities;
+@inject SignInManager<UserApp> SignInManager
+@inject UserManager<UserApp> UserManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - _777</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/_777.styles.css" asp-append-version="true" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="/css/takvim.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/preloader.css" />
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/home.css">
+
+
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">_777</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                    <partial name="_LoginPartial" />
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - _777 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div class="navbar">
+            <a href="/">777</a>
+            <ul class="navbarLinks">
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <li><a href="#" class="navbar-button"><i class="fa-solid fa-house"></i>Home</a></li>
+                    <li><a href="#" class="navbar-button"><i class="fa-solid fa-user"></i>Profile</a></li>
+                    <li><a href="#" class="navbar-button acctive">Account</a></li>
+                    <li><a href="#" class="navbar-button">FAQ</a></li>
+                    <li><a href="#" class="navbar-button">Blog</a></li>
+                    <li><a href="#" class="navbar-button">Log out</a></li>
+                }
+                else
+                {
+                    <li><a href="#" class="navbar-button"><i class="fa-solid fa-house"></i>Home</a></li>
+                    <li><a href="#" class="navbar-button">FAQ</a></li>
+                    <li><a href="#" class="navbar-button">Blog</a></li>
+                    <li><a href="/Identity/Account/Login" class="navbar-button">Login</a></li>
+                    <li><a href="/Identity/Account/Register" class="navbar-button">Register</a></li>
+                }
+            </ul>
+            <a href="/user/Write" class="btn">
+                <i class="fa-solid fa-feather"></i>
+                Yazmaya Başla!
+            </a>
         </div>
-    </footer>
+    </header>
+
+    <div class="main">
+        @RenderBody()
+    </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/js/takvim.js"></script>
+    <script src="/js/write.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+
+}
+else
+{
+
+}

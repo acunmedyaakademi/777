@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.WebUtilities;
 using System.Text.Encodings.Web;
 using System.Text;
 using _777.Data.Entities;
+using _777.Core;
 
 namespace _777.Controllers
 {
@@ -49,9 +50,7 @@ namespace _777.Controllers
                     EmailConfirmed = false
 
                 };
-
                 var result = await _userManager.CreateAsync(user, model.Password);
-
 
                 if (result.Succeeded)
                 {
@@ -63,52 +62,43 @@ namespace _777.Controllers
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(
-                            "/Account/ConfirmEmail",
-                            pageHandler: null,
-                            values: new { area = "Identity", userId = UserId, code = code },
-                            protocol: Request.Scheme);
+                    "/Account/ConfirmEmail",
+                    pageHandler: null,
+                    values: new { area = "Identity", userId = UserId, code = code },
+                    protocol: Request.Scheme);
 
-                    //MailKitService.SendMailPassword(user.Email, HtmlEncoder.Default.Encode(callbackUrl));
+                    Helper.SendMail(user.Email, HtmlEncoder.Default.Encode(callbackUrl));
 
                     return RedirectToAction("index", "home");
                 }
                 return Content("burada 404 sayfasına yolla");
-
-
-            }
-            return Content("burada 404 sayfasına yolla");
-
-        }
-        [HttpPost]
-        public async Task<IActionResult> ResetPassword(string Email)
-        {
-            if (ModelState.IsValid)
-            { //todo: smtp 
-                var user = await _userManager.FindByEmailAsync(Email);
-                if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
-                {
-                    return RedirectToPage("Identity/Account/ForgotPasswordConfirmation");
-                }
-                var code = await _userManager.GeneratePasswordResetTokenAsync(user);
-                code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                var callbackUrl = Url.Page(
-                        "/Account/ResetPassword",
-                        pageHandler: null,
-                        values: new { area = "Identity", code },
-                        protocol: Request.Scheme);
-                //MailKitService.SendMailPassword(Email, HtmlEncoder.Default.Encode(callbackUrl));
-
-                return RedirectToAction("Index", "home");
             }
             return Content("burada 404 sayfasına yolla");
         }
+        //[HttpPost]
+        //public async Task<IActionResult> ResetPassword(string Email)
+        //{
+        //    if (ModelState.IsValid)
+        //    { //todo: smtp 
+        //        var user = await _userManager.FindByEmailAsync(Email);
+        //        if (user == null || !await _userManager.IsEmailConfirmedAsync(user))
+        //            return RedirectToPage("Identity/Account/ForgotPasswordConfirmation");
+
+        //        var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+        //        code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+        //        var callbackUrl = Url.Page(
+        //                "/Account/ConfirmEmail",
+        //                pageHandler: null,
+        //                values: new { area = "Identity", code },
+        //                protocol: Request.Scheme);
+        //        if (Helper.SendMail(Email, HtmlEncoder.Default.Encode(callbackUrl)))
+
+        //            return RedirectToAction("Index", "home");
+        //    }
+        //    return Content("burada 404 sayfasına yolla");
+        //}
 
 
-        [HttpPost]
-        public IActionResult NewPassword(string email)
-        {
-            return View();
-        }
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
@@ -116,6 +106,27 @@ namespace _777.Controllers
             return RedirectToAction("Index", "home");
         }
 
+        [HttpPost]
+        public async Task<IActionResult> ConfirmEmail(string userId, string code)
+        {
+            if (userId == null || code == null)
+            {
+                return Content("Olmadı");
+            }
+
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return NotFound($"Unable to load user with ID '{userId}'.");
+            }
+
+            code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
+            var result = await _userManager.ConfirmEmailAsync(user, code);
+            if (result.Succeeded)
+                return Content("Mailiniz Onaylanmıştır");
+
+            return Content("Olmadı");
+        }
     }
 }
 

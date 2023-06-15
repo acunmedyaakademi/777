@@ -58,7 +58,6 @@ namespace _777.Controllers
             //ok
         }
 
-        [ValidateAntiForgeryToken]
         [HttpPost]
         public IActionResult Write(string Text)
         {
@@ -67,6 +66,7 @@ namespace _777.Controllers
             Text text = new();
             text.Content = Text;
             text.UserId = userId;
+            text.Title = Helper.DateToString(DateTime.Now);
             text.SentimentScore = Helper.SentimentAnalysis(Text);
             
             _context.Texts.Add(text);

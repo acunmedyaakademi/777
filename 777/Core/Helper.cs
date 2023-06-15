@@ -107,8 +107,11 @@ public static class Helper
                 negative = negative + 1;
             }
         }
-
-        double score = (positive - negative) / (positive + negative);
+        double score;
+        if (!(positive + negative == 0))
+            score = (positive - negative) / (positive + negative);
+        else
+            score = 0;
         return score;
     }
 

@@ -1,0 +1,167 @@
+@import url('reset.css');
+
+:root {
+    --color-primary: rgb(244,208,63);
+    --color-primary-light: rgba(244,208,62,0.8);
+    --color-secondry: rgb(22,160,133);
+    --color-secondry-light: rgba(22,160,132,0.7);
+    --color-gray: rgb(129,129,129);
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/*--------- header START ------------*/
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background: rgba(255,255,255,0.8);
+}
+
+.navbarLinks {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+    .navbarLinks li {
+        padding: 5px;
+    }
+
+/* NAVBAR BUTTON START */
+
+.navbar-button {
+    border: none;
+    padding: 1em 1.5em;
+    color: #000;
+    position: relative;
+    display: inline-block;
+}
+
+    .navbar-button i {
+        padding-right: 10px;
+    }
+
+    .navbar-button::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 2px;
+        width: 0;
+        background-color: #ffc506;
+        transition: .5s ease;
+    }
+
+    .navbar-button:hover::before {
+        width: 100%;
+    }
+
+.navbar-active::before {
+    transition: 0s;
+}
+
+.navbar-active:hover::before {
+    width: 0;
+}
+
+.navbar-active {
+    border-bottom: 2px solid #ffc506;
+}
+/* NAVBAR BUTTON END */
+
+.btn {
+    color: #560bad;
+    display: inline-block;
+    padding: 5px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid #560bad;
+    transition: color .5s;
+    z-index: 1;
+    border-radius: 6px;
+}
+
+    .btn:before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        background: #560bad;
+        height: 150px;
+        width: 200px;
+        border-radius: 50%;
+    }
+
+    .btn:hover {
+        color: #fff;
+    }
+
+    .btn:before {
+        top: 100%;
+        left: 100%;
+        transition: all .7s;
+    }
+
+    .btn:hover:before {
+        top: -30px;
+        left: -30px;
+    }
+
+    .btn:active:before {
+        background: #3a0ca3;
+    }
+/*--------- header END ---------*/
+
+
+/*--------- detayContainer START ---------*/
+.detayContainer {
+    width: 80%;
+    margin: 0 auto;
+    height: calc(100vh - 106px);
+}
+
+/* articles */
+
+.articles {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+    overflow-y: scroll;
+    max-height: 300px;
+}
+
+.articleItem {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #845ec2;
+}
+
+/* textDetails end */
+
+.successGrade {
+    margin-top: 50px;
+    border: 1px solid #000;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+    .successGrade form textarea {
+        width: 100%;
+        padding-left: 8px;
+        resize: none;
+        height: 100px;
+    }
+
+    .successGrade .btn {
+        margin-left: auto;
+        display: block;
+    }
+
+/*--------- detayContainer end ---------*/

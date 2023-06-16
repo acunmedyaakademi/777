@@ -2,12 +2,14 @@
 using _777.Data;
 using _777.Data.Entities;
 using _777.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace _777.Controllers
 {
+    [Authorize]
     public class UserController : Controller
     {
         readonly UserManager<UserApp> _userManager;
@@ -50,6 +52,20 @@ namespace _777.Controllers
             //ok
         }
 
+        [HttpPost]
+        public IActionResult AddMessage(string message)
+        {
+            int b = Convert.ToInt16(_userManager.GetUserId(User));
+            InspireMessage a = new();
+            a.Message = message;
+            a.UserId = b;
+
+            _context.InspireMessages.Add(a);
+            _context.SaveChanges();
+            //bywada oldu mesajı yola
+            return RedirectToAction("Profile", "user");
+        }
+
         public IActionResult Write()
         {
             int b = Convert.ToInt16(_userManager.GetUserId(User));
@@ -68,7 +84,7 @@ namespace _777.Controllers
             text.UserId = userId;
             text.Title = Helper.DateToString(DateTime.Now);
             text.SentimentScore = Helper.SentimentAnalysis(Text);
-            
+
             _context.TextApps.Add(text);
             _context.SaveChanges();
             return View();

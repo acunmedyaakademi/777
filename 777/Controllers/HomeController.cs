@@ -28,8 +28,17 @@ namespace _777.Controllers
         }
         public IActionResult Privacy()
         {
-            return View();
+            Dictionary<string, double> dataDict = new Dictionary<string, double>();
+            var textApps = _context.TextApps.Where(a => a.CreatedOn.Month == DateTime.Now.Month && a.UserId == 1).ToList();
+
+            foreach (var item in textApps)
+            {
+                dataDict[item.Title] = item.SentimentScore;
+            }
+
+            return View(dataDict);
         }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

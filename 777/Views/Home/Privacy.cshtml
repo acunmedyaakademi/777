@@ -1,51 +1,20 @@
-﻿@{
-    Layout = null;
-}
-<!DOCTYPE html><html>
+﻿@model Dictionary<string, double>
+<!DOCTYPE html>
+<html>
 <head>
     <title>Günlük Veri Grafiği</title>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
         google.charts.load('current', { 'packages': ['corechart'] });
-        google.charts.setOnLoadCallback(drawChart);
+        google.charts.setOnLoadCallback(drawCharts);
 
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Gün', 'Veri'],
-                ['1 Haziran', 1 0],
-                ['2 Haziran', 0.5],
-                ['3 Haziran', 0.2],
-                ['1 Haziran', -0.9],
-                ['2 Haziran', 0.5],
-                ['3 Haziran', 0.2], 
-                ['2 Haziran', 0.5],
-                ['3 Haziran', 0.2], 
-                ['2 Haziran', 0.5],
-                ['3 Haziran', 0.2], 
-                ['2 Haziran', 0.5],
-                ['3 Haziran', -0.2],
-                ['3 Haziran', 0.2],
-                ['3 Haziran', 0.2],
-                ['3 Haziran', 0.2],
-                ['3 Haziran', 0.8],
-                ['1 Haziran', 0.0],
-                ['2 Haziran', 0.5],
-                ['3 Haziran', 0.2],
-                ['1 Haziran', 0.0],
-                ['2 Haziran', -0.8],
-                ['3 Haziran', 0.2],
-                ['2 Haziran', 0.5],
-                ['3 Haziran', 0.2],
-                ['2 Haziran', 0.5],
-                ['3 Haziran', 0.2],
-                ['2 Haziran', 0.5],
-                ['3 Haziran', 0.2],
-                ['3 Haziran', 0.2],
-                ['3 Haziran', 0.2],
-                ['3 Haziran', 0.2],
-                ['3 Haziran', 0.2],
-                // ... diğer günlerin verileri buraya eklenebilirs
-            ]);
+        function drawCharts() {
+            var modelData = [
+                @foreach (var entry in Model)
+                {
+                    <text>['@entry.Key', @entry.Value],</text>
+                }
+            ];
 
             var options = {
                 title: 'Günlük Veri Grafiği',
@@ -53,13 +22,18 @@
                 legend: { position: 'bottom' }
             };
 
-            var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+            var chartData1 = google.visualization.arrayToDataTable([['Gün', 'Veri']].concat(modelData));
+            var chart1 = new google.visualization.LineChart(document.getElementById('chart_div1'));
+            chart1.draw(chartData1, options);
 
-            chart.draw(data, options);
+            var chartData2 = google.visualization.arrayToDataTable([['Gün', 'Veri']].concat(modelData));
+            var chart2 = new google.visualization.LineChart(document.getElementById('chart_div2'));
+            chart2.draw(chartData2, options);
         }
     </script>
 </head>
 <body>
-    <div id="chart_div" style="width: 800px; height: 400px;"></div>
+    <div id="chart_div1" style="width: 800px; height: 400px;"></div>
+    <div id="chart_div2" style="width: 800px; height: 400px;"></div>
 </body>
 </html>

@@ -21,6 +21,7 @@ const MONTHS = [
     'Aralık'
 ];
 
+let malik = [];
 
 
 function createCalendar(date) {
@@ -28,10 +29,10 @@ function createCalendar(date) {
     const curr = getLastDate(date.getFullYear(), date.getMonth() + 1);
     const next = TOTAL_DAYS_VISIBLE - (prev.days + curr);
 
+
     // Firstly, clear the date list
     dateList.innerHTML = "";
 
-    // let malik = [];
 
     // Fill previous days on the calendar
     for(let i = prev.date - prev.days + 1; i <= prev.date; i++){
@@ -42,18 +43,18 @@ function createCalendar(date) {
 
     // Fill current days on the calendar
     for(let i = 1; i <= curr; i++) {
-        // malik.push(i);
+        malik.push(i);
         if(date.getDate() === i) {
             dateList.innerHTML += `
-                <li class="date current today">${i}</li>
+                <li class="date current today" data-id=${i}>${i}</li>
             `;
         }else {
             dateList.innerHTML += `
-                <li class="date current">${i}</li>
+                <li class="date current complated" data-id=${i}>${i}</li>
             `;
         }
     }
-
+    
     // Fill next days on the calendar
     for(let i = 1; i <= next; i++) {
         dateList.innerHTML += `
@@ -66,29 +67,30 @@ function createCalendar(date) {
         MONTHS[date.getMonth()]
     }, ${date.getFullYear()}`;
 
-    // const liElements = dateList.querySelectorAll("li");
+    const liElements = dateList.querySelectorAll("li");
 
-    // liElements.forEach((li) => {
-    //     if (li.classList.contains("complated")) {
-    //         li.innerText = "✔";    
-    //     }
-    // });
+    liElements.forEach((li) => {
+        if (li.classList.contains("complated")) {
+            li.innerText = "✔";
+            li.addEventListener("mouseover", (event) => {
+                li.textContent = handleMouseOver(event);
+            })
 
-    // let previousText = "";
-
-    // liElements.forEach((li) => {
-    //     if (li.classList.contains("complated")) {
-    //       li.addEventListener("mouseover", () => {
-    //         previousText = li.textContent;
-    //         li.textContent = "✔";
-    //       });
-      
-    //       li.addEventListener("mouseout", () => {
-    //         li.textContent = previousText;
-    //       });
-    //     }
-    //   });
+            li.addEventListener("mouseout", () => {
+                li.textContent = "✔";
+            })
+        }
+    });
 };
+
+// Her bir buton üzerine geldiğinde çalışacak olay dinleyicisi fonksiyonunu tanımlayın
+function handleMouseOver(event) {
+    const liElements = dateList.querySelectorAll(".current");
+    // Hangi düğmeye tıkladığımızı almak için "target" özelliğini kullanın
+    let buttonIndex = Array.from(liElements).indexOf(event.target) + 1;
+    console.log("Button Index:", buttonIndex);
+    return buttonIndex;
+}
 
 // Previous month
 function prevMonth() {

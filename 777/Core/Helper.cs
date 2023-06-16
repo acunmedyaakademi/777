@@ -24,11 +24,8 @@ public static class Helper
 
     public static int CountText(string text)
     {
-        //int Month = date.Month;
-        //int Day = date.Day;
-        //string MonthName = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(Month);
-        //return $"{Day} {MonthName}";
-        return 1;
+        string[] splitedText = text.Split(' ');
+        return splitedText.Length;
     }
 
     public static bool ValidateRecaptcha(string token)

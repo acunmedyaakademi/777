@@ -21,10 +21,15 @@ const MONTHS = [
     'Aralık'
 ];
 
+let malik = [];
+
+
 function createCalendar(date) {
     const prev = getLastDate(date.getFullYear(), date.getMonth(), true);
     const curr = getLastDate(date.getFullYear(), date.getMonth() + 1);
     const next = TOTAL_DAYS_VISIBLE - (prev.days + curr);
+    const currentMonth = MONTHS[date.getMonth()];
+    const currentYear = date.getFullYear();
 
     // Firstly, clear the date list
     dateList.innerHTML = "";
@@ -39,17 +44,18 @@ function createCalendar(date) {
 
     // Fill current days on the calendar
     for(let i = 1; i <= curr; i++) {
+        malik.push(i);
         if(date.getDate() === i) {
             dateList.innerHTML += `
-                <li class="date current today">${i}</li>
+                <li class="date current today" data-id=${i} data-title=${i}->${i}</li>
             `;
         }else {
             dateList.innerHTML += `
-                <li class="date current">${i}</li>
+                <li class="date current" data-id=${i} data-title=${i}-${currentMonth.toString()}-${currentYear.toString()}>${i.toString()}</li>
             `;
         }
     }
-
+    
     // Fill next days on the calendar
     for(let i = 1; i <= next; i++) {
         dateList.innerHTML += `
@@ -59,9 +65,34 @@ function createCalendar(date) {
 
     // Update current month & year
     currentMonthYear.innerText = `${
-        MONTHS[date.getMonth()]
-    }, ${date.getFullYear()}`;
+        currentMonth
+    }, ${currentYear}`;
+
+    const liElements = dateList.querySelectorAll("li");
+
+
+    liElements.forEach((li) => {
+        if (li.classList.contains("complated")) {
+            li.textContent = "✔";
+            li.addEventListener("mouseover", (event) => {
+                li.textContent = handleMouseOver(event);
+            })
+
+            li.addEventListener("mouseout", () => {
+                li.textContent = "✔";
+            })
+        }
+    });
 };
+
+// Her bir buton üzerine geldiğinde çalışacak olay dinleyicisi fonksiyonunu tanımlayın
+function handleMouseOver(event) {
+    const liElements = dateList.querySelectorAll(".current");
+    // Hangi düğmeye tıkladığımızı almak için "target" özelliğini kullanın
+    let buttonIndex = Array.from(liElements).indexOf(event.target) + 1;
+    console.log("Button Index:", buttonIndex);
+    return buttonIndex;
+}
 
 // Previous month
 function prevMonth() {
@@ -90,5 +121,19 @@ function getLastDate(year, month, withDay = false) {
     return new Date(year, month, 0).getDate();
 };
 
+function buttonDeneme(event) {
+    var li = event.target;
+    var dataTitle = li.dataset.title;
+    var dataArray = dataTitle.split("-");
+    var aElementi = document.getElementById("gizli");
+    aElementi.href = "/user/textdetails?day=" + dataArray[0] + "&month=" + dataArray[1] + "&year=" + dataArray[2];
+    aElementi.click();
+    console.log(dataArray);
+}
+
+
+
 // Event Listeners
 document.addEventListener("DOMContentLoaded", () => createCalendar(date));
+dateList.addEventListener("click", buttonDeneme);
+

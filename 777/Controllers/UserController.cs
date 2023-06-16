@@ -96,6 +96,14 @@ namespace _777.Controllers
             return View(a);
         }
 
+
+        public IActionResult TextDetails(string day, string month, string year)
+        {
+            string title = day+" "+ month;
+            var a = _context.TextApps.Where(a => a.Title == title & a.CreatedOn.Year == Convert.ToInt16(year)).FirstOrDefault();
+            return View(a);
+        }
+
         [HttpPost]
         public IActionResult TextDetail(TextApp text)
         {

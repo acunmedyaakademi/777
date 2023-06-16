@@ -49,7 +49,8 @@ namespace _777.Controllers
                 {
                     UserName = model.Email,
                     Email = model.Email,
-                    FullName = model.FullName
+                    FullName = model.FullName,
+                    EmailConfirmed = true
 
                 };
                 var result = await _userManager.CreateAsync(user, model.Password);

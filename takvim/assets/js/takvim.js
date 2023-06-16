@@ -62,7 +62,6 @@ function createCalendar(date) {
             <li class="date">${i}</li>
         `;
     }
-    debugger
 
     // Update current month & year
     currentMonthYear.innerText = `${
@@ -129,3 +128,25 @@ function buttonDeneme() {
 document.addEventListener("DOMContentLoaded", () => createCalendar(date));
 dateList.addEventListener("click", buttonDeneme);
 
+
+// confetti
+
+const btn = document.querySelector('#button');
+const popup = document.querySelector('.popup');
+const close = document.querySelector('.close');
+const canvasConfetti = document.querySelector('#my-canvas');
+
+btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    popup.classList.add('active');
+    canvasConfetti.classList.add('active');
+});
+
+close.addEventListener('click', () => {
+    popup.classList.remove('active');
+    canvasConfetti.classList.remove('active');
+});
+
+let confettiSettings = { target: 'my-canvas' };
+let confetti = new ConfettiGenerator(confettiSettings);
+confetti.render();

@@ -42,7 +42,6 @@ function createCalendar(date) {
 
     // Takvimdeki mevcut gunleri doldurun
     for(let i = 1; i <= curr; i++) {
-        malik.push(i);
         if(date.getDate() === i) {
             dateList.innerHTML += `
                 <li class="date current today" data-id=${i} data-title=${i}->${i}</li>

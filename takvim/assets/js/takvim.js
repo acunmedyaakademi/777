@@ -28,7 +28,8 @@ function createCalendar(date) {
     const prev = getLastDate(date.getFullYear(), date.getMonth(), true);
     const curr = getLastDate(date.getFullYear(), date.getMonth() + 1);
     const next = TOTAL_DAYS_VISIBLE - (prev.days + curr);
-
+    const currentMonth = MONTHS[date.getMonth()];
+    const currentYear = date.getFullYear();
 
     // Firstly, clear the date list
     dateList.innerHTML = "";
@@ -46,11 +47,11 @@ function createCalendar(date) {
         malik.push(i);
         if(date.getDate() === i) {
             dateList.innerHTML += `
-                <li class="date current today" data-id=${i}>${i}</li>
+                <li class="date current today" data-id=${i} data-title=${i}->${i}</li>
             `;
         }else {
             dateList.innerHTML += `
-                <li class="date current complated" data-id=${i}>${i}</li>
+                <li class="date current" data-id=${i} data-title=${i}-${currentMonth}-${currentYear}>${i}</li>
             `;
         }
     }
@@ -61,11 +62,12 @@ function createCalendar(date) {
             <li class="date">${i}</li>
         `;
     }
-    
+    debugger
+
     // Update current month & year
     currentMonthYear.innerText = `${
-        MONTHS[date.getMonth()]
-    }, ${date.getFullYear()}`;
+        currentMonth
+    }, ${currentYear}`;
 
     const liElements = dateList.querySelectorAll("li");
 

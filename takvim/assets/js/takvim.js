@@ -21,8 +21,6 @@ const MONTHS = [
     'Aralık'
 ];
 
-let malik = [];
-
 
 function createCalendar(date) {
     const prev = getLastDate(date.getFullYear(), date.getMonth(), true);
@@ -31,18 +29,18 @@ function createCalendar(date) {
     const currentMonth = MONTHS[date.getMonth()];
     const currentYear = date.getFullYear();
 
-    // Firstly, clear the date list
+    // Tarih listesini temizle
     dateList.innerHTML = "";
 
 
-    // Fill previous days on the calendar
+    // Takvimde onceki gunleri doldurun
     for(let i = prev.date - prev.days + 1; i <= prev.date; i++){
         dateList.innerHTML += `
             <li class="date">${i}</li>
         `;
     }
 
-    // Fill current days on the calendar
+    // Takvimdeki mevcut gunleri doldurun
     for(let i = 1; i <= curr; i++) {
         malik.push(i);
         if(date.getDate() === i) {
@@ -56,14 +54,14 @@ function createCalendar(date) {
         }
     }
     
-    // Fill next days on the calendar
+    // Takvimde sonraki gunleri doldur
     for(let i = 1; i <= next; i++) {
         dateList.innerHTML += `
             <li class="date">${i}</li>
         `;
     }
 
-    // Update current month & year
+    // Mevcut ay ve gunu guncelle
     currentMonthYear.innerText = `${
         currentMonth
     }, ${currentYear}`;
@@ -84,10 +82,10 @@ function createCalendar(date) {
     });
 };
 
-// Her bir buton üzerine geldiğinde çalışacak olay dinleyicisi fonksiyonunu tanımlayın
+// Her bir buton uzerine geldiginde calisacak olay dinleyicisi fonksiyonunu tanimlayin
 function handleMouseOver(event) {
     const liElements = dateList.querySelectorAll(".current");
-    // Hangi düğmeye tıkladığımızı almak için "target" özelliğini kullanın
+    // Hangi dugmeye tikladigimizi almak icin "target" ozelligini kullanin
     let buttonIndex = Array.from(liElements).indexOf(event.target) + 1;
     console.log("Button Index:", buttonIndex);
     return buttonIndex;
@@ -108,7 +106,7 @@ function nextMonth() {
 }
     
 
-// Get last date of the previous month
+// Onceki ayin son tarihini al
 function getLastDate(year, month, withDay = false) {
     if(withDay) {
         return {
@@ -129,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => createCalendar(date));
 dateList.addEventListener("click", buttonDeneme);
 
 
-// confetti
+// Confetti
 
 const btn = document.querySelector('#button');
 const popup = document.querySelector('.popup');

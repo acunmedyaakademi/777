@@ -135,8 +135,8 @@ public static class Helper
 
             using (var smtp = new SmtpClient())
             {
-                smtp.Connect("smtp.eu.mailgun.org", 587, SecureSocketOptions.StartTls);
-                smtp.Authenticate("postmaster@mailer.akademiprojeler.live", "668fb195685bcac61ad8e6c56ed6fdce-102c75d8-e7f16f5e");
+                smtp.Connect("******", 587, SecureSocketOptions.StartTls);
+                smtp.Authenticate("***********", "****************");
                 smtp.Send(emailMessage);
                 smtp.Disconnect(true);
             }

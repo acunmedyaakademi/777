@@ -47,7 +47,7 @@ function createCalendar(date) {
         malik.push(i);
         if(date.getDate() === i) {
             dateList.innerHTML += `
-                <li class="date current today" data-id=${i} data-title=${i}->${i}</li>
+                <li class="date current today" data-id=${i} data-title=${i}-${currentMonth.toString()}-${currentYear.toString()}>${i.toString()}</li>
             `;
         }else {
             dateList.innerHTML += `

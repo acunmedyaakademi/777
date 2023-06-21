@@ -68,10 +68,13 @@ namespace _777.Controllers
 
         public IActionResult Write()
         {
+            var date = Helper.DateToString(DateTime.Now);
             int b = Convert.ToInt16(_userManager.GetUserId(User));
-            List<TextApp> texts = _context.TextApps.Include(a => a.User).ToList();
-            return View(texts);
-            //ok
+            TextApp text = _context.TextApps.Where(a => a.Id == Convert.ToInt16(_userManager.GetUserId(User)) & a.Title == date).FirstOrDefault();
+            if (text != null)
+                return View(text);
+
+            return View();
         }
 
         [HttpPost]
@@ -99,7 +102,7 @@ namespace _777.Controllers
 
         public IActionResult TextDetails(string day, string month, string year)
         {
-            string title = day+" "+ month;
+            string title = day + " " + month;
             var a = _context.TextApps.Where(a => a.Title == title & a.CreatedOn.Year == Convert.ToInt16(year)).FirstOrDefault();
             return View(a);
         }

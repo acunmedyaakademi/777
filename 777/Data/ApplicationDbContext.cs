@@ -18,7 +18,7 @@ namespace _777.Data
         public DbSet<InspireMessage> InspireMessages { get; set; }
         public override int SaveChanges()
         {
-            var datas = ChangeTracker.Entries<BaseClass>(); 
+            var datas = ChangeTracker.Entries<IBaseClass>(); 
 
             foreach (var data in datas)
             {
@@ -37,6 +37,31 @@ namespace _777.Data
                 }
             }
             return base.SaveChanges();
+        }
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            var datas = ChangeTracker.Entries<IBaseClass>(); // hadalı
+
+            foreach (var data in datas)
+            {
+                switch (data.State)
+                {
+                    case EntityState.Modified:
+                        data.Entity.UpdatedOn = DateTime.Now;
+                        break;
+                    case EntityState.Added:
+                        data.Entity.CreatedOn = DateTime.Now;
+                        data.Entity.UpdatedOn = DateTime.Now;
+                   
+                        break;
+                    //if (data.Entity is Subscription)
+                    //{ break; }
+                    //data.Entity.IsActive = false;
+                    default:
+                        break;
+                }
+            }
+            return base.SaveChangesAsync(cancellationToken);
         }
     }
 }

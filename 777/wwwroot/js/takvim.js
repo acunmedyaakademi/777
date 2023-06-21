@@ -137,3 +137,24 @@ function buttonDeneme(event) {
 document.addEventListener("DOMContentLoaded", () => createCalendar(date));
 dateList.addEventListener("click", buttonDeneme);
 
+// Confetti
+
+const btn = document.querySelector('#sumbitBtn');
+const popup = document.querySelector('.popup');
+const close = document.querySelector('.close');
+const canvasConfetti = document.querySelector('#my-canvas');
+
+btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    popup.classList.add('active');
+    canvasConfetti.classList.add('active');
+});
+
+close.addEventListener('click', () => {
+    popup.classList.remove('active');
+    canvasConfetti.classList.remove('active');
+});
+
+let confettiSettings = { target: 'my-canvas' };
+let confetti = new ConfettiGenerator(confettiSettings);
+confetti.render();

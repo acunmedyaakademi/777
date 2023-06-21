@@ -81,6 +81,7 @@ namespace _777.Controllers
             }
             return Content("burada 404 sayfasına yolla");
         }
+
         //[HttpPost]
         //public async Task<IActionResult> ResetPassword(string Email)
         //{
@@ -134,28 +135,8 @@ namespace _777.Controllers
             return Content("Olmadı");
         }
 
-  
-        public IActionResult ChangeUsarname( string Usarname)
-        {
-            int ıd = Convert.ToInt16(_userManager.GetUserId(User));
-           var user = _context.Users.Where(a => a.Id == ıd).FirstOrDefault();
-           user.UserName = Usarname;   
-            _context.SaveChanges();
 
-            return Content("Burası hesaba gidecek");
-        }
-
-
-        public IActionResult AccountDelete (int id)
-        {
-
-            int ıd = Convert.ToInt16(_userManager.GetUserId(User));
-            var user = _context.Users.Where(a => a.Id == ıd).FirstOrDefault();
-            _context.Remove(user);
-            _context.SaveChanges();
-            return Content("Burası Hesabı silecek");
-        }
-        
     }
+
 }
 

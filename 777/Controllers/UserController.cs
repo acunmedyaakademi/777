@@ -137,7 +137,7 @@ namespace _777.Controllers
             {
 
 
-                TempData["Message"] = "Şifreniz Güncellenememiştir.T1ekrar Deneyiniz.";
+                TempData["Message"] = "Şifreniz Güncellenememiştir.Tekrar Deneyiniz.";
 
                 return RedirectToAction("ChangePassword", "user");
             }
@@ -147,7 +147,7 @@ namespace _777.Controllers
             {
 
 
-                TempData["Message"] = "Şifreniz Güncellenememiştir.Tekrar D2eneyiniz.";
+                TempData["Message"] = "Şifreniz Güncellenememiştir.Tekrar Deneyiniz.";
 
                 return RedirectToAction("ChangePassword", "user");
             }
@@ -158,7 +158,7 @@ namespace _777.Controllers
             {
 
 
-                TempData["Message"] = "Şifreniz Güncellenememiştir.Tekrar3 Deneyiniz.";
+                TempData["Message"] = "Şifreniz Güncellenememiştir.Tekrar Deneyiniz.";
 
                 return RedirectToAction("ChangePassword", "user");
             }

@@ -142,6 +142,12 @@ namespace _777.Controllers
                 return RedirectToAction("ChangePassword", "user");
             }
 
+            if (model.NewPassword != model.ConfirmPassword)
+            {
+                TempData["Message"] = "Yeni şifre ve şifre tekrarı birbirleriyle eşleşmiyor. Tekrar deneyiniz.";
+                return RedirectToAction("ChangePassword", "User");
+            }
+
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {

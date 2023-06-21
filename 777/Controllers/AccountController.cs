@@ -1,3 +1,4 @@
+
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
@@ -50,6 +51,10 @@ namespace _777.Controllers
                     Email = model.Email,
                     FullName = model.FullName,
                     EmailConfirmed = true
+<<<<<<< HEAD
+
+=======
+>>>>>>> master
                 };
 
                 var result = await _userManager.CreateAsync(user, model.Password);

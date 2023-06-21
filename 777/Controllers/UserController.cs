@@ -182,6 +182,16 @@ namespace _777.Controllers
         }
 
 
+        private bool ContainsLowerCaseLetter(string password)
+        {
+            return password.Any(c => char.IsLower(c));
+        }
+
+        private bool ContainsUpperCaseLetter(string password)
+        {
+            return password.Any(c => char.IsUpper(c));
+        }
+
 
     }
 }

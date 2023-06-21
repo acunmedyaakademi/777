@@ -7,18 +7,22 @@ using _777.Data.Entities;
 using _777.Core;
 using Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal;
 using _777.Models;
+using System.Drawing;
+using _777.Data;
 
 namespace _777.Controllers
 {
     public class AccountController : Controller
     {
         readonly UserManager<UserApp> _userManager;
+        readonly ApplicationDbContext _context;
         readonly SignInManager<UserApp> _signInManager;
 
-        public AccountController(SignInManager<UserApp> signInManager, UserManager<UserApp> userManager)
+        public AccountController(SignInManager<UserApp> signInManager, UserManager<UserApp> userManager, ApplicationDbContext context)
         {
             _signInManager = signInManager;
             _userManager = userManager;
+            _context = context;
         }
 
         [HttpPost]
@@ -128,6 +132,29 @@ namespace _777.Controllers
 
             return Content("Olmadı");
         }
+
+  
+        public IActionResult ChangeUsarname( string Usarname)
+        {
+            int ıd = Convert.ToInt16(_userManager.GetUserId(User));
+           var user = _context.Users.Where(a => a.Id == ıd).FirstOrDefault();
+           user.UserName = Usarname;   
+            _context.SaveChanges();
+
+            return Content("Burası hesaba gidecek");
+        }
+
+
+        public IActionResult AccountDelete (int id)
+        {
+
+            int ıd = Convert.ToInt16(_userManager.GetUserId(User));
+            var user = _context.Users.Where(a => a.Id == ıd).FirstOrDefault();
+            _context.Remove(user);
+            _context.SaveChanges();
+            return Content("Burası Hesabı silecek");
+        }
+        
     }
 }
 

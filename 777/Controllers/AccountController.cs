@@ -80,6 +80,7 @@ namespace _777.Controllers
             }
             return Content("burada 404 sayfasına yolla");
         }
+
         //[HttpPost]
         //public async Task<IActionResult> ResetPassword(string Email)
         //{
@@ -156,5 +157,6 @@ namespace _777.Controllers
         }
         
     }
+
 }
 

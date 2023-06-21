@@ -18,7 +18,7 @@ namespace _777.Data
         public DbSet<InspireMessage> InspireMessages { get; set; }
         public override int SaveChanges()
         {
-            var datas = ChangeTracker.Entries<BaseClass>(); 
+            var datas = ChangeTracker.Entries<IBaseClass>(); 
 
             foreach (var data in datas)
             {

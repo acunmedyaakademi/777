@@ -14,10 +14,13 @@ namespace _777.Controllers
     {
         readonly UserManager<UserApp> _userManager;
         readonly ApplicationDbContext _context;
-        public UserController(UserManager<UserApp> userManager, ApplicationDbContext context)
+        readonly SignInManager<UserApp> _signInManager;
+
+        public UserController(UserManager<UserApp> userManager, ApplicationDbContext context, SignInManager<UserApp> signInManager)
         {
             _userManager = userManager;
             _context = context;
+            _signInManager = signInManager;
         }
 
         public IActionResult Index()
@@ -120,5 +123,56 @@ namespace _777.Controllers
             
             return RedirectToAction("Profile");
         }
+
+        public IActionResult ChangePassword()
+        {
+            ViewBag.Message = TempData["Message"] as string;
+
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword(ChangePasswordModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+
+
+                TempData["Message"] = "Şifreniz Güncellenememiştir.T1ekrar Deneyiniz.";
+
+                return RedirectToAction("ChangePassword", "user");
+            }
+
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+
+
+                TempData["Message"] = "Şifreniz Güncellenememiştir.Tekrar D2eneyiniz.";
+
+                return RedirectToAction("ChangePassword", "user");
+            }
+
+            var changePasswordResult = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
+            if (!changePasswordResult.Succeeded)
+
+            {
+
+
+                TempData["Message"] = "Şifreniz Güncellenememiştir.Tekrar3 Deneyiniz.";
+
+                return RedirectToAction("ChangePassword", "user");
+            }
+
+            TempData["Message"] = "Şifreniz başarıyla güncellenmiştir.";
+
+
+            await _signInManager.RefreshSignInAsync(user);
+            return RedirectToAction("ChangePassword", "user");
+
+
+        }
+
+
+
     }
 }

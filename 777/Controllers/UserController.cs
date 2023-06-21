@@ -111,5 +111,14 @@ namespace _777.Controllers
             _context.SaveChanges();
             return View();
         }
+
+        [HttpPost]
+        public IActionResult DeleteText (int TextId)
+        {
+            var texts = _context.TextApps.Where(a => a.Id == TextId).FirstOrDefault();
+            _context.TextApps.Remove(texts);
+            
+            return RedirectToAction("Profile");
+        }
     }
 }

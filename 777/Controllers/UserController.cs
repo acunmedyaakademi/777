@@ -52,6 +52,13 @@ namespace _777.Controllers
             //ok
         }
 
+        public async Task<IActionResult> Account()
+        {
+            return View("Account");
+            
+        }
+
+
         [HttpPost]
         public IActionResult AddMessage(string message)
         {
@@ -119,6 +126,22 @@ namespace _777.Controllers
             _context.TextApps.Remove(texts);
             
             return RedirectToAction("Profile");
+        }
+
+
+        [HttpGet]
+        public IActionResult Delete()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult DeleteConfirmed()
+        {
+            // Hesap silme işlemini gerçekleştirin ve gerekli yönlendirmeyi yapın.
+            // Silme işlemiyle ilgili mantığı buraya ekleyebilirsiniz.
+
+            return RedirectToAction("Index", "Home"); // Örnek olarak ana sayfaya yönlendiriyoruz.
         }
     }
 }

@@ -75,7 +75,7 @@ public static class Helper
             string s = splitedText[i];
             string? a = "";
 
-
+             
             switch (i)
             {
                 case 0:

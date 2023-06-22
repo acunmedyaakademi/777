@@ -1,75 +1,79 @@
-﻿ <div class="main">
-        <!-- container start -->
-        <div class="container">
+﻿@using _777.Data.Entities;
+@model TextApp
+<div class="main">
+    <!-- container start -->
+    <div class="container">
+        <a type="hidden" style="width:0;height:0;" id="gizli" href=""> </a>
 
-            <!-- calender START -->
-            <div class="calendar">
-                <!-- calendarTop start -->
-                <div class="calendarTop">
+        <!-- calender START -->
+        <div class="calendar">
+            <!-- calendarTop start -->
+            <div class="calendarTop">
 
-                    <ul class="days">
-                        <li class="day">M</li>
-                        <li class="day">T</li>
-                        <li class="day">W</li>
-                        <li class="day">Th</li>
-                        <li class="day">F</li>
-                        <li class="day">Sa</li>
-                        <li class="day">S</li>
-                    </ul>
+                <ul class="days">
+                    <li class="day">M</li>
+                    <li class="day">T</li>
+                    <li class="day">W</li>
+                    <li class="day">Th</li>
+                    <li class="day">F</li>
+                    <li class="day">Sa</li>
+                    <li class="day">S</li>
+                </ul>
 
-                    <ul class="dates">
-                    </ul>
+                <ul class="dates">
+                </ul>
 
-                </div>
-                <!-- calendarTop end -->
+            </div>
+            <!-- calendarTop end -->
             @*<a id="gizli" style="visibility:hidden" href=""></a>*@
 
-                <!-- calendarBottom start -->
-                <div class="calendarBottom">
-                    <button class="prevBtn" onclick="prevMonth()">
-                        <i class="fa-solid fa-chevron-left"></i>
-                    </button>
+            <!-- calendarBottom start -->
+            <div class="calendarBottom">
+                <button class="prevBtn" onclick="prevMonth()">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
 
-                    <span class="currentMonthYear"></span>
+                <span class="currentMonthYear"></span>
 
-                    <button class="nextBtn" onclick="nextMonth()">
-                        <i class="fa-solid fa-chevron-right"></i>
-                    </button>
-                </div>
-                <!-- calendarBottom end -->
-
+                <button class="nextBtn" onclick="nextMonth()">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
             </div>
-            <!-- calender END -->
+            <!-- calendarBottom end -->
+
         </div>
-        <!-- container end -->
+        <!-- calender END -->
+    </div>
+    <!-- container end -->
+    <!-- container start -->
+    <div class="container">
 
-        <!-- container start -->
-        <div class="container">
+        <!-- writingArea START -->
+        <div class="writingArea">
+            <fieldset>
 
-            <!-- writingArea START -->
-            <div class="writingArea">
-                <fieldset>
-
-                    <legend id="sayı">0</legend>
-
+                <legend id="sayı">0</legend>
+                @if (Model != null)
+                {
+                    <textarea name="text" id="text" oninput="countWords()">@Model.Content</textarea>
+                }
+                else
+                {
                     <textarea name="text" id="text" oninput="countWords()"></textarea>
+                }
 
-                    <button id="sumbitBtn" class="btn">Kaydet</button>
+                <button id="sumbitBtn" class="btn">Kaydet</button>
 
-                </fieldset>
-            </div>
+            </fieldset>
+        </div>
 
-      
-            <!-- writingArea END -->
+
+        <!-- writingArea END -->
     </div>
     <div class="popup">
         <h2>Tebrikler..</h2>
         <b class="close">x</b>
     </div>
 </div>
-        <!-- container end -->
-
-    <!-- ------main END------ -->
-
-
-            
+<!-- container end -->
+<!-- ------main END------ -->

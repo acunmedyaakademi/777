@@ -38,8 +38,9 @@ namespace _777.Controllers
         public async Task<IActionResult> Profile()
         {
             ProfileVM VM = new ProfileVM();
+
             var user = await _userManager.GetUserAsync(User);
-            var TextDetails = _context.TextApps.ToList();
+            var TextDetails = _context.TextApps.Where(a=>a.UserId == user.Id).ToList();
             List<TextDetail> detaylar = new();
 
             foreach (var item in TextDetails)
@@ -49,6 +50,7 @@ namespace _777.Controllers
                 detay.Id = item.Id;
                 detaylar.Add(detay);
             }
+
             VM.Details = detaylar;
             VM.User = user;
             return View(VM);
@@ -80,7 +82,8 @@ namespace _777.Controllers
         {
             var date = Helper.DateToString(DateTime.Now);
             int b = Convert.ToInt16(_userManager.GetUserId(User));
-            TextApp text = _context.TextApps.Where(a => a.Id == Convert.ToInt16(_userManager.GetUserId(User)) & a.Title == date).FirstOrDefault();
+            TextApp text = _context.TextApps.Where(a => a.UserId == Convert.ToInt16(_userManager.GetUserId(User)) & a.Title == date).FirstOrDefault();
+
             if (text != null)
                 return View(text);
 
@@ -90,6 +93,18 @@ namespace _777.Controllers
         [HttpPost]
         public IActionResult Write(string Text)
         {
+            var date = Helper.DateToString(DateTime.Now);
+            TextApp query = _context.TextApps.Where(a => a.UserId == Convert.ToInt16(_userManager.GetUserId(User)) & a.Title == date).FirstOrDefault();
+
+            if (query != null)
+            {
+                query.SentimentScore = Helper.SentimentAnalysis(Text);
+                query.Content = Text;
+                _context.TextApps.Update(query);
+                _context.SaveChanges();
+                return View();
+            }
+
             Helper.SentimentAnalysis(Text);
             int userId = Convert.ToInt16(_userManager.GetUserId(User));
             TextApp text = new();

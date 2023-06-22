@@ -24,6 +24,7 @@ namespace _777.Controllers
         public IActionResult Index()
         {
             List<InspireMessage> messages = _context.InspireMessages.Include(a => a.user).ToList();
+            _context.SaveChanges();
             return View(messages);
         }
         public IActionResult Privacy()

@@ -2,12 +2,13 @@
 using _777.Data.Entities.Common;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System.Formats.Asn1;
+
 
 namespace _777.Data
 {
     public class ApplicationDbContext : IdentityDbContext<UserApp,RoleApp,int>
     {
+        
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -18,6 +19,9 @@ namespace _777.Data
         public DbSet<InspireMessage> InspireMessages { get; set; }
         public override int SaveChanges()
         {
+            //UserStore userStore = new();
+            //userStore.UpdateAsync
+
             var datas = ChangeTracker.Entries<IBaseClass>(); 
 
             foreach (var data in datas)
@@ -40,7 +44,7 @@ namespace _777.Data
         }
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            var datas = ChangeTracker.Entries<IBaseClass>(); // hadalı
+            var datas = ChangeTracker.Entries<IBaseClass>(); 
 
             foreach (var data in datas)
             {
@@ -61,7 +65,36 @@ namespace _777.Data
                         break;
                 }
             }
+        
             return base.SaveChangesAsync(cancellationToken);
         }
+        public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess = true,
+            CancellationToken cancellationToken = default)
+        {
+            var datas = ChangeTracker.Entries<IBaseClass>();
+
+            foreach (var data in datas)
+            {
+                switch (data.State)
+                {
+                    case EntityState.Modified:
+                        data.Entity.UpdatedOn = DateTime.Now;
+                        break;
+                    case EntityState.Added:
+                        data.Entity.CreatedOn = DateTime.Now;
+                        data.Entity.UpdatedOn = DateTime.Now;
+
+                        break;
+                    //if (data.Entity is Subscription)
+                    //{ break; }
+                    //data.Entity.IsActive = false;
+                    default:
+                        break;
+                }
+            }
+
+            return base.SaveChangesAsync(acceptAllChangesOnSuccess,  cancellationToken);
+        }
+
     }
 }

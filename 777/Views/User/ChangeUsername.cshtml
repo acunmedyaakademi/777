@@ -61,10 +61,14 @@
 
 
        
+         <small class="text-muted">
+                *Kullanıcı adı Türkçe karakter içermemeli ve boşluk olmamalıdır.*
+        </small> <br />
 
-        <div class="form-group">
+        <div class="form-group">  <br />
             @Html.LabelFor(m => m.NewUsername , "Yeni Kullanıcı Adınız")
-            @Html.TextBoxFor(m => m.NewUsername, new { @class = "form-control" })    
+            @Html.TextBoxFor(m => m.NewUsername, new { @class = "form-control" })
+           
             @Html.LabelFor(m => m.ConfirmUsername , "Yeni Kullanıcı Adınız")
             @Html.TextBoxFor(m => m.ConfirmUsername, new { @class = "form-control" })
         </div>

@@ -27,6 +27,12 @@ namespace _777.Controllers
             _context.SaveChanges();
             return View(messages);
         }
+
+
+        public IActionResult SikcaSorulanSorular()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             Dictionary<string, double> dataDict = new Dictionary<string, double>();

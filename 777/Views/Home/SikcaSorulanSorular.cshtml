@@ -1,0 +1,83 @@
+﻿<style>
+
+    .accordion-item {
+  margin-bottom: 20px;
+}
+
+.accordion-button {
+  background-color: #f8f9fa;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.accordion-button:hover {
+  background-color: #e9ecef;
+}
+
+.accordion-button[aria-expanded="true"] {
+  background-color: #d1d7e0;
+}
+
+.accordion-title {
+  font-size: 18px;
+  color: #000;
+}
+
+.accordion-body {
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  color: #000;
+}
+
+
+
+
+
+</style>
+
+<div class="container">
+
+<div class="accordion" id="accordionExample">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Yazılımcı Nasıl Olunur?
+            </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <strong>Boşver olup napıcan</strong>  Deneme deneme deneme deneme though the transition does limit overflow.
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Günde Kaç Kelime Yazabilirim?
+            </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                    <strong>750</strong> 
+                </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Böyle Mükemmel Bir Ekip Başka Nerede Bulabilirim?
+            </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                    <strong>BULAMAZSIN :))))))))</strong>  
+                </div>
+        </div>
+    </div>
+</div>
+
+</div>

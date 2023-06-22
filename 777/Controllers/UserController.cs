@@ -58,7 +58,7 @@ namespace _777.Controllers
         public async Task<IActionResult> Account()
         {
             return View("Account");
-            
+
         }
 
 
@@ -126,11 +126,11 @@ namespace _777.Controllers
         }
 
         [HttpPost]
-        public IActionResult DeleteText (int TextId)
+        public IActionResult DeleteText(int TextId)
         {
             var texts = _context.TextApps.Where(a => a.Id == TextId).FirstOrDefault();
             _context.TextApps.Remove(texts);
-            
+
             return RedirectToAction("Profile");
         }
 
@@ -205,7 +205,57 @@ namespace _777.Controllers
         }
 
 
+        public IActionResult ChangeUsername()
+        {
+            ViewBag.Message = TempData["Message"] as string;
 
+            return View();
+        }
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> ChangeUsername(ChangeUsernameModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+
+
+                TempData["Message"] = "Kullanıcı Adınız Başarıyla Güncellenmiştir.";
+
+                return RedirectToAction("ChangeUsername", "user");
+            }
+
+
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+
+
+                TempData["Message"] = "Kullanıcı Adınız Güncellenememiştir.Tekrar Deneyiniz.";
+
+                return RedirectToAction("ChangeUsername", "user");
+            }
+            if (model.NewUsername == model.ConfirmUsername)
+            {
+
+                user.UserName = model.NewUsername;
+               var r = await _userManager.UpdateAsync(user);
+                TempData["Message"] = "Kullanıcı Adınız başarıyla güncellenmiştir.";
+
+
+              return RedirectToAction("ChangeUsername", "user");
+            }
+            return RedirectToAction("ChangeUsername", "user");
+
+
+        }
 
     }
+
+
+
+
+
 }
+

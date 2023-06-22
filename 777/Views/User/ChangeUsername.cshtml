@@ -1,0 +1,82 @@
+﻿@model ChangeUsernameModel
+
+
+<style>
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555555;
+        background-color: #ffffff;
+        background-image: none;
+        border: 1px solid #cccccc;
+        border-radius: 4px;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    }
+
+    .btn-primary {
+        color: #ffffff;
+        background-color: #337ab7;
+        border-color: #2e6da4;
+    }
+
+        .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
+            color: #ffffff;
+            background-color: #286090;
+            border-color: #204d74;
+        }
+
+    .alert {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+
+    .alert-success {
+        color: #3c763d;
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+    }
+
+</style>
+
+
+
+
+
+
+<div class="container">
+    @using (Html.BeginForm("ChangeUsername", "User", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+
+
+       
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.NewUsername , "Yeni Kullanıcı Adınız")
+            @Html.TextBoxFor(m => m.NewUsername, new { @class = "form-control" })    
+            @Html.LabelFor(m => m.ConfirmUsername , "Yeni Kullanıcı Adınız")
+            @Html.TextBoxFor(m => m.ConfirmUsername, new { @class = "form-control" })
+        </div>
+
+
+
+        <button type="submit" class="btn btn-primary">Kullanıcı Adını Değiştir</button>
+
+        <div class="alert alert-success">@ViewBag.Message</div>
+
+
+
+    }
+
+</div>

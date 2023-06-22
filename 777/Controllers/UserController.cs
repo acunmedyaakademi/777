@@ -55,6 +55,13 @@ namespace _777.Controllers
             //ok
         }
 
+        public async Task<IActionResult> Account()
+        {
+            return View("Account");
+
+        }
+
+
         [HttpPost]
         public IActionResult AddMessage(string message)
         {
@@ -119,12 +126,28 @@ namespace _777.Controllers
         }
 
         [HttpPost]
-        public IActionResult DeleteText (int TextId)
+        public IActionResult DeleteText(int TextId)
         {
             var texts = _context.TextApps.Where(a => a.Id == TextId).FirstOrDefault();
             _context.TextApps.Remove(texts);
-            
+
             return RedirectToAction("Profile");
+        }
+
+
+        [HttpGet]
+        public IActionResult Delete()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult DeleteConfirmed()
+        {
+            // Hesap silme işlemini gerçekleştirin ve gerekli yönlendirmeyi yapın.
+            // Silme işlemiyle ilgili mantığı buraya ekleyebilirsiniz.
+
+            return RedirectToAction("Index", "Home"); // Örnek olarak ana sayfaya yönlendiriyoruz.
         }
 
         public IActionResult ChangePassword()
@@ -182,16 +205,57 @@ namespace _777.Controllers
         }
 
 
-        private bool ContainsLowerCaseLetter(string password)
+        public IActionResult ChangeUsername()
         {
-            return password.Any(c => char.IsLower(c));
+            ViewBag.Message = TempData["Message"] as string;
+
+            return View();
         }
 
-        private bool ContainsUpperCaseLetter(string password)
-        {
-            return password.Any(c => char.IsUpper(c));
-        }
 
+
+        [HttpPost]
+        public async Task<IActionResult> ChangeUsername(ChangeUsernameModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+
+
+                TempData["Message"] = "Kullanıcı Adınız Başarıyla Güncellenmiştir.";
+
+                return RedirectToAction("ChangeUsername", "user");
+            }
+
+
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+
+
+                TempData["Message"] = "Kullanıcı Adınız Güncellenememiştir.Tekrar Deneyiniz.";
+
+                return RedirectToAction("ChangeUsername", "user");
+            }
+            if (model.NewUsername == model.ConfirmUsername)
+            {
+
+                user.UserName = model.NewUsername;
+               var r = await _userManager.UpdateAsync(user);
+                TempData["Message"] = "Kullanıcı Adınız başarıyla güncellenmiştir.";
+
+
+              return RedirectToAction("ChangeUsername", "user");
+            }
+            return RedirectToAction("ChangeUsername", "user");
+
+
+        }
 
     }
+
+
+
+
+
 }
+

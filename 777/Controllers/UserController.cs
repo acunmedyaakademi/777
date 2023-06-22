@@ -55,6 +55,13 @@ namespace _777.Controllers
             //ok
         }
 
+        public async Task<IActionResult> Account()
+        {
+            return View("Account");
+            
+        }
+
+
         [HttpPost]
         public IActionResult AddMessage(string message)
         {
@@ -127,6 +134,22 @@ namespace _777.Controllers
             return RedirectToAction("Profile");
         }
 
+
+        [HttpGet]
+        public IActionResult Delete()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult DeleteConfirmed()
+        {
+            // Hesap silme işlemini gerçekleştirin ve gerekli yönlendirmeyi yapın.
+            // Silme işlemiyle ilgili mantığı buraya ekleyebilirsiniz.
+
+            return RedirectToAction("Index", "Home"); // Örnek olarak ana sayfaya yönlendiriyoruz.
+        }
+
         public IActionResult ChangePassword()
         {
             ViewBag.Message = TempData["Message"] as string;
@@ -182,15 +205,6 @@ namespace _777.Controllers
         }
 
 
-        private bool ContainsLowerCaseLetter(string password)
-        {
-            return password.Any(c => char.IsLower(c));
-        }
-
-        private bool ContainsUpperCaseLetter(string password)
-        {
-            return password.Any(c => char.IsUpper(c));
-        }
 
 
     }

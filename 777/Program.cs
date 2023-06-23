@@ -22,9 +22,10 @@ namespace _777
             var builder = WebApplication.CreateBuilder(args);
             // Add services to the container.
             //builder.Services.AddRegistrations();
-            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+            //var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+            //veritabanýsorunu düzelince deðiþecek
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(connectionString));
+                options.UseSqlServer("Server=.;Database=777;Trusted_Connection=True; TrustServerCertificate=True;"));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<UserApp>(options => options.SignIn.RequireConfirmedAccount = true)

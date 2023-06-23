@@ -40,7 +40,7 @@ namespace _777.Controllers
             ProfileVM VM = new ProfileVM();
 
             var user = await _userManager.GetUserAsync(User);
-            var TextDetails = _context.TextApps.Where(a=>a.UserId == user.Id).ToList();
+            var TextDetails = _context.TextApps.Where(a => a.UserId == user.Id).ToList();
             List<TextDetail> detaylar = new();
 
             foreach (var item in TextDetails)
@@ -82,12 +82,28 @@ namespace _777.Controllers
         {
             var date = Helper.DateToString(DateTime.Now);
             int b = Convert.ToInt16(_userManager.GetUserId(User));
+
             TextApp text = _context.TextApps.Where(a => a.UserId == Convert.ToInt16(_userManager.GetUserId(User)) & a.Title == date).FirstOrDefault();
 
             if (text != null)
                 return View(text);
 
             return View();
+        }
+
+
+        public async Task<IActionResult> Calendar()
+        {
+            var date = Helper.DateToString(DateTime.Now);
+            int b = Convert.ToInt16(_userManager.GetUserId(User));
+
+            var Titles = await _context.TextApps.Where(a => a.UserId == b).Select(a => a.Title).ToArrayAsync();
+
+            for (int i = 0; i < Titles.Length; i++)
+            {
+                Titles[i] = Titles[i].Replace(' ', '-');
+            }
+            return Json(Titles);
         }
 
         [HttpPost]
@@ -255,11 +271,11 @@ namespace _777.Controllers
             {
 
                 user.UserName = model.NewUsername;
-               var r = await _userManager.UpdateAsync(user);
+                var r = await _userManager.UpdateAsync(user);
                 TempData["Message"] = "Kullanıcı Adınız başarıyla güncellenmiştir.";
 
 
-              return RedirectToAction("ChangeUsername", "user");
+                return RedirectToAction("ChangeUsername", "user");
             }
             return RedirectToAction("ChangeUsername", "user");
 

@@ -10,6 +10,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Account\**" />
+    <Content Remove="Views\Account\**" />
+    <EmbeddedResource Remove="Views\Account\**" />
+    <None Remove="Views\Account\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MailKit" Version="4.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.16" />
@@ -23,10 +30,6 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.13" />
     <PackageReference Include="MimeKit" Version="4.0.0" />
     <PackageReference Include="RestSharp" Version="110.2.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\Account\" />
   </ItemGroup>
 
 </Project>

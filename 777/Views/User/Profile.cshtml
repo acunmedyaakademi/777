@@ -1,7 +1,5 @@
-﻿@model ProfileVM;
+﻿@model ProfileVM; 
 
-<!-- -------HEADER END------ -->
-<!-- ------detayContainer START------ -->
 <div class="detayContainer">
 
     <!-- textDetails -->
@@ -17,13 +15,11 @@
             }
         </ul>
     </div>
-    <!-- textDetails end -->
-    <!-- chart start -->
+
     <div class="charts">
         <div id="chart_div" style="width: 100%; height: 400px;"></div>
     </div>
-    <!-- chart end -->
-    <!-- successGrade start -->
+
     <div class="successGrade">
 
         <form asp-action="addmessage" asp-controller="user" method="post">
@@ -31,15 +27,14 @@
             <button type="submit" class="btn">Kaydet</button>
         </form>
 
-        <form asp-action="deletemessage" asp-controller="user" method="post">
+       @* <form asp-action="deletemessage" asp-controller="user" method="post">
             <button type="submit" class="btn btn-delete">Sil</button>
-        </form>
+        </form>*@
 
     </div>
-    <!-- successGrade start -->
+
 
 </div>
-<!-- ------detayContainer END------ -->
 
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

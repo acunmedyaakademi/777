@@ -40,7 +40,7 @@ namespace _777.Controllers
             ProfileVM VM = new ProfileVM();
 
             var user = await _userManager.GetUserAsync(User);
-            var TextDetails = _context.TextApps.Where(a => a.UserId == user.Id).ToList();
+            var TextDetails = _context.TextApps.Where(a => a.UserId == user.Id).OrderBy(a=>a.CreatedOn).ToList();
             List<TextDetail> detaylar = new();
 
             foreach (var item in TextDetails)

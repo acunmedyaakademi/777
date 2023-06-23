@@ -51,8 +51,7 @@ function createCalendar(date) {
         }
 
         // Fill current days on the calendar
-        for (let i = 1; i <= curr; i++)
-        {
+        for (let i = 1; i <= curr; i++) {
             malik.push(i);
             if (date.getDate() === i) {
                 dateList.innerHTML += `
@@ -141,12 +140,13 @@ function createCalendar(date) {
         var li = event.target;
         var dataTitle = li.dataset.title;
         var dataArray = dataTitle.split("-");
-        // if (hastick) {
-        var aElementi = document.getElementById("gizli");
-        aElementi.href = "/user/textdetails?day=" + dataArray[0] + "&month=" + dataArray[1] + "&year=" + dataArray[2];
-        aElementi.click();
-        //  }
-        console.log(dataArray);
+        if (Titles.includes(`${dataArray[0]}-${dataArray[1]}`)) {
+
+            var aElementi = document.getElementById("gizli");
+            aElementi.href = "/user/textdetails?day=" + dataArray[0] + "&month=" + dataArray[1] + "&year=" + dataArray[2];
+            aElementi.click();
+            console.log(dataArray);
+        }
     }
 
     // Event Listeners

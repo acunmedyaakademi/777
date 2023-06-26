@@ -38,9 +38,9 @@ namespace _777.Controllers
                     if (result.Succeeded)
                         return RedirectToAction("index", "home");
                 }
-                return Content("burada 404 sayfasına yolla");
+                return Content("Email ya da Şifre yanlış");
             }
-            return Content("burada 404 sayfasına yolla");
+            return Content("Email ya da Şifre yanlış");
         }
 
 

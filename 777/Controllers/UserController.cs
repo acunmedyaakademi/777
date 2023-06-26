@@ -106,8 +106,7 @@ namespace _777.Controllers
             return Json(Titles);
         }
 
-        [HttpPost]
-        public IActionResult Write(string Text)
+        public IActionResult AddText(string Text)
         {
             var date = Helper.DateToString(DateTime.Now);
             TextApp query = _context.TextApps.Where(a => a.UserId == Convert.ToInt16(_userManager.GetUserId(User)) & a.Title == date).FirstOrDefault();

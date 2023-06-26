@@ -1,17 +1,21 @@
-﻿@model ProfileVM; 
+﻿@model ProfileVM;
 
 <div class="detayContainer">
 
     <!-- textDetails -->
     <div class="textDetails">
         <ul class="articles">
-            @foreach (var item in Model.Details)
+
+            @if (Model.Details != null)
             {
-                <li class="articleItem">
-                    <a class="articleItem" href="/user/textdetail?textId=@item.Id">
-                        <span class="date">@item.Title</span>
-                    </a>
-                </li>
+                @foreach (var item in Model.Details)
+                {
+                    <li class="articleItem">
+                        <a class="articleItem" href="/user/textdetail?textId=@item.Id">
+                            <span class="date">@item.Title</span>
+                        </a>
+                    </li>
+                }
             }
         </ul>
     </div>
@@ -27,8 +31,8 @@
             <button type="submit" class="btn">Kaydet</button>
         </form>
 
-       @* <form asp-action="deletemessage" asp-controller="user" method="post">
-            <button type="submit" class="btn btn-delete">Sil</button>
+        @* <form asp-action="deletemessage" asp-controller="user" method="post">
+        <button type="submit" class="btn btn-delete">Sil</button>
         </form>*@
 
     </div>

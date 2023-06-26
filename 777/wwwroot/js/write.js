@@ -2,7 +2,7 @@
     if (($("#text").val().length > 0)) {
         var textvalue = $("#text").val();
 
-        $.post('/user/Write/', { Text: textvalue }).done(function (data) {
+        $.post('/user/AddText/', { Text: textvalue }).done(function (data) {
             var legendElement = $("#sayı");
             legendElement.text(legendElement.text() + " Metin Kaydedildi");
         });

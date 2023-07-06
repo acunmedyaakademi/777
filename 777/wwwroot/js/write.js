@@ -2,11 +2,11 @@
     if (($("#text").val().length > 0)) {
         var textvalue = $("#text").val();
 
-        $.post('/user/AddText/', { Text: textvalue }).done(function (data) {
+        $.post('/user/AddText/', { Text: textvalue }).done(function () {
             var legendElement = $("#sayı");
             legendElement.text(legendElement.text() + " Metin Kaydedildi");
         });
-    } else if (e.keyCode == 13) {
+    } else {
         e.preventDefault();
         var legendElement = $("#sayı");
         legendElement.text(legendElement.text() + " olmadı");

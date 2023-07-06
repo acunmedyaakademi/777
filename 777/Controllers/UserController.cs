@@ -106,7 +106,7 @@ namespace _777.Controllers
             return Json(Titles);
         }
 
-        public IActionResult AddText(string Text)
+        public async Task<IActionResult> AddText(string Text)
         {
             var date = Helper.DateToString(DateTime.Now);
             TextApp query = _context.TextApps.Where(a => a.UserId == Convert.ToInt16(_userManager.GetUserId(User)) & a.Title == date).FirstOrDefault();
@@ -117,7 +117,8 @@ namespace _777.Controllers
                 query.Content = Text;
                 _context.TextApps.Update(query);
                 _context.SaveChanges();
-                return View();
+                return Json("true");
+
             }
 
             Helper.SentimentAnalysis(Text);
@@ -130,7 +131,7 @@ namespace _777.Controllers
 
             _context.TextApps.Add(text);
             _context.SaveChanges();
-            return View();
+            return Json("true");
         }
         public IActionResult TextDetail(int textId)
         {

@@ -38,7 +38,6 @@ function createCalendar(date) {
 
     let Titles = [];
     $.post('/user/calendar/').done(function (data) {
-        debugger
         for (var i = 0; i < data.length; i++) {
             Titles.push(data[i]);
         }
@@ -60,7 +59,6 @@ function createCalendar(date) {
             }
             else {
                 if (Titles.includes(`${i}-${currentMonth.toString()}`)) {
-                    debugger
                     dateList.innerHTML += `
                 <li class="date current complated" data-id=${i} data-title=${i}-${currentMonth.toString()}-${currentYear.toString()}>${i.toString()}</li>
             `;

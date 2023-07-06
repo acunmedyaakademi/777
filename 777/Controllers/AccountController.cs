@@ -1,14 +1,11 @@
-
-﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 using System.Text.Encodings.Web;
 using System.Text;
 using _777.Data.Entities;
 using _777.Core;
-using Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal;
 using _777.Models;
-using System.Drawing;
 using _777.Data;
 
 namespace _777.Controllers

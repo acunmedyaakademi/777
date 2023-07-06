@@ -1,9 +1,6 @@
-using _777.Core;
 using _777.Data;
 using _777.Data.Entities;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System.Configuration;
 
 namespace _777
 {
@@ -21,6 +18,9 @@ namespace _777
         {
             var builder = WebApplication.CreateBuilder(args);
             // Add services to the container.
+
+            builder.Services.AddCors(o => o.AddDefaultPolicy(p => p.WithOrigins("https://77720230626022049.azurewebsites.net").AllowAnyHeader().AllowAnyMethod()));
+
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));

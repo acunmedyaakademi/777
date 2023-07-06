@@ -10,14 +10,10 @@ namespace _777.Controllers
 {
     public class HomeController : Controller
     {
-        readonly ApplicationDbContext _context;
-        private readonly ILogger<HomeController> _logger;
-        private readonly IConfiguration _configuration;
+        readonly ApplicationDbContext _context; 
 
-        public HomeController(ILogger<HomeController> logger, IConfiguration configuration, ApplicationDbContext context)
-        {
-            _logger = logger;
-            _configuration = configuration;
+        public HomeController(ApplicationDbContext context)
+        { 
             _context = context;
         }
 

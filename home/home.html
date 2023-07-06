@@ -30,6 +30,38 @@
                 Let's Write!
             </a>
         </div>
+
+        <!-- navbarMobile start -->
+        <div class="navbarMobile">
+            <a href="#">777</a>
+
+            <div class="buttonWrapperMobile">
+
+                <a href="#" class="btn">
+                    <i class="fa-solid fa-feather"></i>
+                    Let's Write!
+                </a>
+                
+                <i id="openMenu" class="fa-solid fa-bars"></i>
+
+            </div>
+
+        </div>
+        <!-- navbarMobile end -->
+        
+        <div class="dropdownMenu">
+            <ul class="navbarLinks">
+                <li><a href="#" class="navbar-button"><i class="fa-solid fa-house"></i>Home</a></li>
+                <li><a href="#" class="navbar-button"><i class="fa-solid fa-user"></i>Profile</a></li>
+                <li><a href="#" class="navbar-button acctive">Account</a></li>
+                <li><a href="#" class="navbar-button">FAQ</a></li>
+                <li><a href="#" class="navbar-button">Blog</a></li>
+                <li><a href="#" class="navbar-button">Log out</a></li>
+            </ul>
+        </div>
+        
+        
+
     </header>
     <!-- -------HEADER END------ -->
 
@@ -249,6 +281,17 @@
             button.classList.add('navbar-active');
             });
         });
+
+
+        const toggleBtn = document.querySelector('#openMenu');
+        const closeBtn = document.querySelector('.buttonWrapperMobile .fa-xmark');
+        const dropDown = document.querySelector('.dropdownMenu')
+
+        toggleBtn.addEventListener('click', () => {
+            dropDown.classList.toggle('open');
+            toggleBtn.classList.toggle('fa-bars')
+            toggleBtn.classList.toggle('fa-xmark')
+        })
 
         
     </script>
